@@ -1,0 +1,45 @@
+{
+    "name": "InputSettings",
+    "maps": [
+        {
+            "name": "default",
+            "id": "b4bbaf3d-9c2a-4cde-afc3-347b2affa565",
+            "actions": [
+                {
+                    "name": "Tap",
+                    "type": "Button",
+                    "id": "de556212-e4db-4af8-9200-2221b99b278f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ab77dfcc-dcbf-464f-849e-4f8b1d07354a",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b8f62d4-7e0a-410c-951a-86e31523539e",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

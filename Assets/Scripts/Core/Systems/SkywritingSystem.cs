@@ -38,27 +38,18 @@ namespace Core.Systems
             }
         }
         
-        // public void CommandReact(InputStartedCommand command)
-        // {
-        //     if (command.Index != InputIdentifierMap.Tap)
-        //         return;
-        //     _isActive = true;
-        // }
-        //
-        // public void CommandReact(InputEndedCommand command)
-        // {
-        //     if (command.Index != InputIdentifierMap.Tap)
-        //         return;
-        //     _isActive = false;
-        // } 
         public void ReactLocal(InputStartedCommand command)
         {
-            
+            // if (command.Index != InputIdentifierMap.Tap)
+                // return;
+            _isActive = true;
         }
 
         public void ReactLocal(InputEndedCommand command)
         {
-            
+            // if (command.Index != InputIdentifierMap.Tap)
+                // return;
+            _isActive = false;
         }
     }
 }

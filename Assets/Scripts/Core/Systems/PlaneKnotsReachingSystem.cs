@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 
 namespace Core.Systems
 {
-    public sealed class PlaneKnotsReachingSystem : BaseSystem, IUpdatable
+    public sealed partial class PlaneKnotsReachingSystem : BaseSystem, IUpdatable
     {
         private Filter _planeFilter;
         private Filter _levelFilter;

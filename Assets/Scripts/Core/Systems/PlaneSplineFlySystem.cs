@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Core.Systems
 {
-    public sealed class PlaneSplineFlySystem : BaseSystem, IUpdatable
+    public sealed partial class PlaneSplineFlySystem : BaseSystem, IUpdatable
     {
         private const float Z_ROTATION_SPEED = 15f;
         

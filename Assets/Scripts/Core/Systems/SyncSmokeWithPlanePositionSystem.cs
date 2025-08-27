@@ -7,7 +7,7 @@ using SelfishFramework.Src.Unity.Components;
 
 namespace Core.Systems
 {
-    public sealed class SyncSmokeWithPlanePositionSystem : BaseSystem, IUpdatable
+    public sealed partial class SyncSmokeWithPlanePositionSystem : BaseSystem, IUpdatable
     {
         private Filter _smokeFilter;
         private Filter _planeFilter;

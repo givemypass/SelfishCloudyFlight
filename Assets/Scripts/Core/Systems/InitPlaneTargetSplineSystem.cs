@@ -9,7 +9,7 @@ using UnityEngine.Splines;
 
 namespace Core.Systems
 {
-    public sealed class InitPlaneTargetSplineSystem : BaseSystem, IUpdatable
+    public sealed partial class InitPlaneTargetSplineSystem : BaseSystem, IUpdatable
     {
         private Filter _splineFilter;
         private Filter _planeFilter;

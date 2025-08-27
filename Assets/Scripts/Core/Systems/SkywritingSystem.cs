@@ -1,12 +1,15 @@
 using Core.Components;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
+
 using SelfishFramework.Src.Core.Systems;
+using SelfishFramework.Src.Unity.Commands;
 
 namespace Core.Systems
 {
-    public sealed class SkywritingSystem : BaseSystem, IUpdatable
+    public sealed partial class SkywritingSystem : BaseSystem, IUpdatable, IReactLocal<InputStartedCommand>, IReactLocal<InputEndedCommand>
     {
         private Filter _smokeFilter;
         private bool _isActive;
@@ -26,11 +29,11 @@ namespace Core.Systems
                 ref var writingSmokeVFXMonoProvider = ref smoke.Get<WritingSmokeVFXMonoProvider>();
                 if (_isActive)
                 {
-                    // writingSmokeVFXMonoProvider.Get.Play();
+                    writingSmokeVFXMonoProvider.MonoComponent.Play();
                 }
                 else
                 {
-                    // writingSmokeVFXMonoProvider.Get.Pause();
+                    writingSmokeVFXMonoProvider.MonoComponent.Pause();
                 }
             }
         }
@@ -48,5 +51,14 @@ namespace Core.Systems
         //         return;
         //     _isActive = false;
         // } 
+        public void ReactLocal(InputStartedCommand command)
+        {
+            
+        }
+
+        public void ReactLocal(InputEndedCommand command)
+        {
+            
+        }
     }
 }

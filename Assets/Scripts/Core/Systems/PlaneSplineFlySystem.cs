@@ -2,6 +2,7 @@
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
+using SelfishFramework.Src.Unity.Components;
 using UnityEngine;
 
 namespace Core.Systems
@@ -16,9 +17,9 @@ namespace Core.Systems
         
         public override void InitSystem()
         {
-            ref var unityTransformComponent = ref Owner.Get<UnityTransformComponent>();
-            _maxScale = unityTransformComponent.Transform.localScale;
-            unityTransformComponent.Transform.localScale = Vector3.zero;
+            ref var actorProviderComponent = ref Owner.Get<ActorProviderComponent>();
+            _maxScale = actorProviderComponent.Actor.transform.localScale;
+            actorProviderComponent.Actor.transform.localScale = Vector3.zero;
             _targetScale = Vector3.zero;
         }
 
@@ -27,12 +28,13 @@ namespace Core.Systems
             if (!Owner.Has<TargetSplineComponent>())
                 return;
             
-            ref var unityTransformComponent = ref Owner.Get<UnityTransformComponent>();
+            ref var actorProviderComponent = ref Owner.Get<ActorProviderComponent>();
             ref var targetSplineComponent = ref Owner.Get<TargetSplineComponent>();
             ref var positionOnSplineComponent = ref Owner.Get<PositionOnSplineComponent>();
             ref var speedCounterComponent = ref Owner.Get<SpeedCounterComponent>();
+            var actor = actorProviderComponent.Actor;
             
-            unityTransformComponent.Transform.localScale = Vector3.Lerp(unityTransformComponent.Transform.localScale,
+            actor.transform.localScale = Vector3.Lerp(actor.transform.localScale,
                 _targetScale, 10f * Time.deltaTime);
 
             var spline = targetSplineComponent.SplineContainer;
@@ -43,16 +45,16 @@ namespace Core.Systems
             
 
             var pos = position;
-            pos.z = unityTransformComponent.Transform.position.z;
-            unityTransformComponent.Transform.position = pos;
+            pos.z = actor.transform.position.z;
+            actor.transform.position = pos;
 
-            var angleDif = Vector3.Angle(tangent, unityTransformComponent.Transform.forward);
+            var angleDif = Vector3.Angle(tangent, actor.transform.forward);
 
             _zRotation += angleDif * Z_ROTATION_SPEED * Time.deltaTime;
             var targetRotation = Quaternion.LookRotation(tangent, -Vector3.forward) * Quaternion.Euler(0,0,_zRotation);
-            targetRotation = Quaternion.Lerp(unityTransformComponent.Transform.rotation, targetRotation, 10f * Time.deltaTime);
+            targetRotation = Quaternion.Lerp(actor.transform.rotation, targetRotation, 10f * Time.deltaTime);
             
-            unityTransformComponent.Transform.rotation = targetRotation;
+            actor.transform.rotation = targetRotation;
             
             var speed = speedCounterComponent.Value;
             splineTPosition += speed * Time.deltaTime;

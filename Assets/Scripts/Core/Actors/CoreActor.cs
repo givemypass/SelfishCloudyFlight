@@ -8,7 +8,10 @@ namespace Core.Actors
     {
         protected override void SetSystems()
         {
+            base.SetSystems();
             Entity.AddSystem<InitPlaneTargetSplineSystem>();
+            Entity.AddSystem<SyncSmokeWithPlanePositionSystem>();
+            Entity.AddSystem<PlaneKnotsReachingSystem>();
         }
     }
 }

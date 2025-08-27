@@ -10,10 +10,10 @@ namespace Core.Actors
         public PlaneTagComponent PlaneTagComponent = new();
         public InputListenerTagComponent InputListenerTagComponent = new();
         public SpeedCounterComponent SpeedCounterComponent = new();
-        public UnityTransformComponent UnityTransformComponent = new();
 
         protected override void SetSystems()
         {
+            base.SetSystems();
             Entity.AddSystem<PlaneSplineFlySystem>(); 
             Entity.AddSystem<SkywritingSystem>();
         }

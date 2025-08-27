@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Helpers;
+using Core.Identifiers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -41,26 +43,24 @@ namespace Core.MonoBehaviourComponents
         private float _speedScale = 1f;
         [SerializeField]
         private float _marksDistScale = 1f;
-        //todo after adding identifiers
-        // [SerializeField]
-        // private ColorIdentifier color1;
-        // [SerializeField]
-        // private ColorIdentifier color2;
-        // [SerializeField] 
-        // private ColorIdentifier color3;
-        //
-        // public float Scale => scale;
-        // public float SpeedScale => speedScale;
-        // public float MarksDistScale => marksDistScale;
-        //
-        //
-        // public IEnumerable<ColorIdentifier> GetColors()
-        // {
-        //     yield return color1;
-        //     yield return color2;
-        //     yield return color3;
-        // }
-        //
+        [SerializeField]
+        private ColorIdentifier _color1;
+        [SerializeField]
+        private ColorIdentifier _color2;
+        [SerializeField] 
+        private ColorIdentifier _color3;
+        
+        public float Scale => _scale;
+        public float SpeedScale => _speedScale;
+        public float MarksDistScale => _marksDistScale;
+        
+        public IEnumerable<ColorIdentifier> GetColors()
+        {
+            yield return _color1;
+            yield return _color2;
+            yield return _color3;
+        }
+        
 #if UNITY_EDITOR
         private void OnEnable()
         {

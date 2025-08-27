@@ -3,7 +3,9 @@ using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
+using SelfishFramework.Src.Unity;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace Core.Systems
 {
@@ -29,30 +31,24 @@ namespace Core.Systems
             {
                 foreach (var levelEnt in _splineFilter)
                 {
-                    // ref var levelComponent = ref levelEnt.Get<LevelComponent>();
-                    // var levelPrefab = levelComponent.Level;
-                    // var levelContainer = levelEnt.AsActor();
-                    // var level = Object.Instantiate(levelPrefab, levelContainer.transform);
-                    //
-                    // foreach (var smoke in _smokeFilter)
-                    // {
-                    //     var writingSmokeVFXMonoComponent = smoke.Get<WritingSmokeVFXMonoProvider>().Get;
-                    //     writingSmokeVFXMonoComponent.SetAlpha(smoke.Has<ManualSmokeTagComponent>());
-                    // }
-                    //
-                    // var splineContainer = level.GetComponent<SplineContainer>();
-                    // planeEnt.Set(new TargetSplineComponent
-                    // {
-                    //     SplineContainer = splineContainer,
-                    // });
-                    // planeEnt.Get<SpeedCounterComponent>().AddModifier(Guid.NewGuid(), new DefaultFloatModifier
-                    // {
-                    //     GetCalculationType = ModifierCalculationType.Divide,
-                    //     GetValue = splineContainer.CalculateLength() / level.SpeedScale,
-                    //     GetModifierType = ModifierValueType.Value,
-                    //     ID = 1,
-                    //     ModifierGuid = Guid.NewGuid()
-                    // });
+                    ref var levelComponent = ref levelEnt.Get<LevelComponent>();
+                    var levelPrefab = levelComponent.Level;
+                    var levelContainer = levelEnt.AsActor();
+                    var level = Object.Instantiate(levelPrefab, levelContainer.transform);
+                    
+                    foreach (var smoke in _smokeFilter)
+                    {
+                        var writingSmokeVFXMonoComponent = smoke.Get<WritingSmokeVFXMonoProvider>().MonoComponent;
+                        writingSmokeVFXMonoComponent.SetAlpha(smoke.Has<ManualSmokeTagComponent>());
+                    }
+                    
+                    var splineContainer = level.GetComponent<SplineContainer>();
+                    planeEnt.Set(new TargetSplineComponent
+                    {
+                        SplineContainer = splineContainer,
+                    });
+                    ref var speedCounter = ref planeEnt.Get<SpeedCounterComponent>();
+                    speedCounter.Value /= splineContainer.CalculateLength() / level.SpeedScale;
                     break;
                 }
             }

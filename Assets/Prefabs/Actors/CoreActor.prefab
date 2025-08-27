@@ -44,3 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cfa95144bd47bfb764c3b8ff354cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelsHolderComponent:
+    Levels: []
+  GlobalConfigComponent:
+    _config:
+      TapAccuracyToHit: 1
+      TapAccuracyToPass: 2
+      ReleaseAccuracyToHit: 1
+      ReleaseAccuracyToPass: 2
+      ColorPallete:
+        models:
+        - Key: {fileID: 11400000, guid: 1b7f7d42993308943b225ee9de0f2009, type: 2}
+          Value: {r: 1, g: 0.6666667, b: 0.6666667, a: 1}
+        - Key: {fileID: 11400000, guid: a368528c9070684418be3ed924393295, type: 2}
+          Value: {r: 0.5803922, g: 1, b: 0.67058825, a: 1}
+        - Key: {fileID: 11400000, guid: 8c818d03e586f294ea193a37ad3ececc, type: 2}
+          Value: {r: 0.7019608, g: 0.69411767, b: 1, a: 1}
+        - Key: {fileID: 11400000, guid: 552ac37467b8b6147ad9fba086ff5f60, type: 2}
+          Value: {r: 1, g: 0.95686275, b: 0.68235296, a: 1}
+        - Key: {fileID: 11400000, guid: eb5fddbdc6097af4e9d8c0651bccfaec, type: 2}
+          Value: {r: 1, g: 1, b: 1, a: 1}

@@ -2,34 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SelfishFramework.Src.Unity;
 using UnityEngine;
 
 namespace Core.Helpers
 {
-    //todo after making identifiers
-    // [Serializable]
-    // public class IdentifierToModelMap<TKey, TValue> : SimpleSerializableMap<TKey, TValue>
-    //     where TKey : IdentifierContainer
-    // {
-    //     public bool TryGet(int key, out TValue value)
-    //     {
-    //         foreach (var model in models)
-    //         {
-    //             if (model.Key.Id == key)
-    //             {
-    //                 value = model.Value;
-    //                 return true;
-    //             }
-    //         }
-    //
-    //         value = default;
-    //         return false;
-    //     }
-    //
-    //     public TValue this[int stateKey] =>
-    //         TryGet(stateKey, out var value) ? value : throw new ArgumentOutOfRangeException();
-    //
-    // }
+    [Serializable]
+    public class IdentifierToModelMap<TKey, TValue> : SimpleSerializableMap<TKey, TValue>
+        where TKey : IdentifierContainer
+    {
+        public bool TryGet(int key, out TValue value)
+        {
+            foreach (var model in models)
+            {
+                if (model.Key.Id == key)
+                {
+                    value = model.Value;
+                    return true;
+                }
+            }
+    
+            value = default;
+            return false;
+        }
+    
+        public TValue this[int stateKey] =>
+            TryGet(stateKey, out var value) ? value : throw new ArgumentOutOfRangeException();
+    
+    }
 
     [Serializable]
     public class SimpleSerializableMap<TKey, TValue>

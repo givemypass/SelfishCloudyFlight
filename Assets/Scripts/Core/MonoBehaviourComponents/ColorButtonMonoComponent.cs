@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents
 {
     public class ColorButtonMonoComponent : MonoBehaviour, IPointerDownHandler
     {

@@ -1,7 +1,7 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents.GUI
 {
     public class LevelProgressBarMonoComponent : MonoBehaviour
     {

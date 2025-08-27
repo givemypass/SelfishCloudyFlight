@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents.GUI
 {
     public class LevelScreenUIMonoComponent : MonoBehaviour
     {

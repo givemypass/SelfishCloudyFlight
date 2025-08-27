@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents
 {
     public class FreezeRotationMonoComponent : MonoBehaviour
     {

@@ -1,9 +1,8 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents
 {
     public class ComplimentMonoComponent : MonoBehaviour
     {

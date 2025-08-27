@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Helpers;
+using Core.Helpers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Splines;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents
 {
     [Serializable]
     public struct LevelKnotInfo : IEquatable<LevelKnotInfo>

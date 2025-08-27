@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents.GUI
 {
     public class FinishLevelScreenUIMonoComponent : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents
 {
     public class WritingSmokeVFXMonoComponent : MonoBehaviour
     {

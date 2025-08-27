@@ -1,9 +1,8 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace Components.MonoBehaviourComponents
+namespace Core.MonoBehaviourComponents.GUI
 {
     public class TutorialUIMonoComponent : MonoBehaviour
     {

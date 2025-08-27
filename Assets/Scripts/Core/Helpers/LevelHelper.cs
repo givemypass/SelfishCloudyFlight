@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.MonoBehaviourComponents;
+using Core.MonoBehaviourComponents;
 
-namespace Helpers
+namespace Core.Helpers
 {
     public static class LevelHelper
     {

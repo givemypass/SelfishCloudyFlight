@@ -3,9 +3,9 @@ using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
-
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity.Commands;
+using SelfishFramework.Src.Unity.Generated;
 
 namespace Core.Systems
 {
@@ -40,15 +40,15 @@ namespace Core.Systems
         
         public void ReactLocal(InputStartedCommand command)
         {
-            // if (command.Index != InputIdentifierMap.Tap)
-                // return;
+            if (command.Index != InputIdentifierMap.Tap)
+                return;
             _isActive = true;
         }
 
         public void ReactLocal(InputEndedCommand command)
         {
-            // if (command.Index != InputIdentifierMap.Tap)
-                // return;
+            if (command.Index != InputIdentifierMap.Tap)
+                return;
             _isActive = false;
         }
     }

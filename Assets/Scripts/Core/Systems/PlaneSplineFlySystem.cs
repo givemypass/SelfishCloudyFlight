@@ -1,10 +1,10 @@
-﻿using SelfishFramework.Src.Core;
+﻿using Core.Components;
+using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
-using Skywriting.Components;
 using UnityEngine;
 
-namespace Skywriting.Systems
+namespace Core.Systems
 {
     public sealed class PlaneSplineFlySystem : BaseSystem, IUpdatable
     {

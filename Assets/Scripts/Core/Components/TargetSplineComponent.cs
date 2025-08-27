@@ -1,8 +1,10 @@
+using System;
 using SelfishFramework.Src.Core.Components;
 using UnityEngine.Splines;
 
-namespace Skywriting.Components
+namespace Core.Components
 {
+    [Serializable]
     public struct TargetSplineComponent : IComponent
     {
         public SplineContainer SplineContainer;

@@ -2,8 +2,9 @@ using System;
 using SelfishFramework.Src.Core.Components;
 using UnityEngine;
 
-namespace Skywriting.Components
+namespace Core.Components
 {
+    [Serializable]
     public struct UnityTransformComponent : IComponent
     {
         [NonSerialized]

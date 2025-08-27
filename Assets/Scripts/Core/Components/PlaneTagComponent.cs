@@ -1,7 +1,9 @@
-﻿using SelfishFramework.Src.Core.Components;
+﻿using System;
+using SelfishFramework.Src.Core.Components;
 
-namespace Skywriting.Components
+namespace Core.Components
 {
+    [Serializable]
     public struct PlaneTagComponent : IComponent
     {
     }

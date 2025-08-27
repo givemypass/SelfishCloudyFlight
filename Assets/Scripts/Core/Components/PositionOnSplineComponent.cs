@@ -1,7 +1,9 @@
+using System;
 using SelfishFramework.Src.Core.Components;
 
-namespace Skywriting.Components
+namespace Core.Components
 {
+    [Serializable]
     public struct PositionOnSplineComponent : IComponent
     {
         public float TPos;

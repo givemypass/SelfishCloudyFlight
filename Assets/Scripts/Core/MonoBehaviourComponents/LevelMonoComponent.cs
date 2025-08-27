@@ -36,11 +36,11 @@ namespace Core.MonoBehaviourComponents
         public LevelKnotInfoMap LevelKnotInfoMap;
 
         [SerializeField]
-        private float scale = 1f;
+        private float _scale = 1f;
         [SerializeField]
-        private float speedScale = 1f;
+        private float _speedScale = 1f;
         [SerializeField]
-        private float marksDistScale = 1f;
+        private float _marksDistScale = 1f;
         //todo after adding identifiers
         // [SerializeField]
         // private ColorIdentifier color1;

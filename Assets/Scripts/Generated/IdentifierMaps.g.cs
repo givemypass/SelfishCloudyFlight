@@ -9,6 +9,13 @@ namespace SelfishFramework.Src.Unity.Generated
         public const int White = -1803781937;
         public const int Yellow = -815277848;
     }
+    public static class GameStateIdentifierMap
+    {
+        public const int BootstrapLevelState = -1058236071;
+        public const int BootstrapState = 1188540995;
+        public const int FinishLevelState = 1590688746;
+        public const int LevelState = 1862850834;
+    }
     public static class InputIdentifierMap
     {
         public const int Tap = -775217935;

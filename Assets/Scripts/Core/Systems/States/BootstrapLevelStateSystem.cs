@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using Core.Components;
+﻿using Core.Components;
 using Core.Models;
 using Core.MonoBehaviourComponents;
 using Cysharp.Threading.Tasks;
@@ -8,8 +7,10 @@ using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.SLogs;
+using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Generated;
 using Systems;
+using UnityEngine;
 
 namespace Core.Systems.States
 {
@@ -20,19 +21,21 @@ namespace Core.Systems.States
         private Single<LevelsHolderComponent> _levelsHolder;
         private Single<GlobalConfigComponent> _globalConfig;
         private Single<PlayerProgressComponent> _playerProgress;
+        private Single<ActorsHolderComponent> _actorsHolder;
         private SingleSystem<SceneManagerTagComponent, SceneManagerSystem> _sceneManager;
 
         public override void InitSystem() { }
 
         public void GlobalStart()
         {
-            _levelsHolder = new Single<LevelsHolderComponent>(Owner.GetWorld());
-            _globalConfig = new Single<GlobalConfigComponent>(Owner.GetWorld());
-            _playerProgress = new Single<PlayerProgressComponent>(Owner.GetWorld());
-            _sceneManager = new SingleSystem<SceneManagerTagComponent, SceneManagerSystem>(Owner.GetWorld());
+            var world = Owner.GetWorld();
+            _levelsHolder = new Single<LevelsHolderComponent>(world);
+            _globalConfig = new Single<GlobalConfigComponent>(world);
+            _playerProgress = new Single<PlayerProgressComponent>(world);
+            _actorsHolder = new Single<ActorsHolderComponent>(world);
+            _sceneManager = new SingleSystem<SceneManagerTagComponent, SceneManagerSystem>(world);
 
             //todo
-            // AsSingle(ref actorsContainersHolderComponent);
             // AsSingleSystem(ref uiSystem);
         }
 
@@ -49,31 +52,36 @@ namespace Core.Systems.States
             var levelIndex = _playerProgress.Get().LevelIndex;
             _levelsHolder.Get().TryGetLevel(levelIndex, out var currentLevel);
             var globalConfig = _globalConfig.Get().Get;
-            ProcessStateAsync(currentLevel, globalConfig).Forget();
+            var levelActorPrefab = _actorsHolder.Get().LevelActorPrefab;
+            ProcessStateAsync(currentLevel, globalConfig, levelActorPrefab).Forget();
         }
         
-        private async UniTask ProcessStateAsync(LevelMonoComponent level, GlobalConfig globalConfig)
+        private async UniTask ProcessStateAsync(LevelMonoComponent level, GlobalConfig globalConfig,
+            Actor levelActorPrefab)
         {
             await _sceneManager.Get().LoadScene(SCENE_NAME);
+
+            var levelActor = Object.Instantiate(levelActorPrefab);
+            levelActor.Init(Owner.GetWorld());
+            var levelComponent = levelActor.Entity.Get<LevelComponent>();
+            levelComponent.Level = level;
+            levelActor.Entity.Set(levelComponent);
+            levelActor.InitSystems();
             
-            // var levelContainer = actorsContainersHolderComponent.LevelContainer;
-            // var levelContainerActor = await levelContainer.GetActor();
-            // levelContainerActor.GetHECSComponent<LevelComponent>().Level = level;
-            // levelContainerActor.Init();
-            //
+            //todo
             // var colors = level.GetColors().Select(c => globalConfig.ColorPallete[c]).ToArray();
             // await ShowUI(colors);
-            //
+            
             EndState();
         }
 
-        private async UniTask ShowUI(Color[] colors)
-        {
+        // private async UniTask ShowUI(Color[] colors)
+        // {
             // var uiEnt = await uiSystem.ShowUI(UIIdentifierMap.LevelScreen_UIIdentifier);
             // var monoComponent = uiEnt.AsActor().GetComponent<LevelScreenUIMonoComponent>();
             // monoComponent.SetLevelColors(colors);
             // monoComponent.Reset.onClick.AddListener(OnReset);
-        }
+        // }
 
         private void OnReset()
         {

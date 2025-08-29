@@ -1,9 +1,11 @@
 ﻿using System;
 using Core.Commands;
 using Core.Components;
+using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
+using SelfishFramework.Src.Features.GameFSM.Components;
 using SelfishFramework.Src.Unity.Generated;
 using Systems;
 
@@ -13,11 +15,12 @@ namespace Core.Systems.States
     public sealed partial class LevelStateSystem : BaseGameStateSystem, IGlobalStart, IUpdatable
     {
         private Filter _planeFilter;
+        private Single<GameStateComponent> _gameState;
         public override void InitSystem() { }
     
         public void GlobalStart()
         {
-            // AsSingle(ref gameStateComponent);
+            _gameState = new Single<GameStateComponent>();
             _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().With<PositionOnSplineComponent>().Build();
         }
     
@@ -38,8 +41,8 @@ namespace Core.Systems.States
 
         public void Update()
         {
-            // if (!gameStateComponent.IsNeededState(State))
-            //     return;
+            if (!_gameState.Get().IsNeededState(State))
+                return;
 
             foreach (var entity in _planeFilter)
             {

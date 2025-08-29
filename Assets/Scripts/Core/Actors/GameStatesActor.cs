@@ -13,6 +13,11 @@ namespace Core.Actors
         {
             base.SetSystems();
             Entity.AddSystem<GameStateMachineSystem>();
+            
+            Entity.AddSystem<BootstrapStateSystem>();
+            Entity.AddSystem<BootstrapLevelStateSystem>();
+            Entity.AddSystem<LevelStateSystem>();
+            Entity.AddSystem<FinishLevelStateSystem>();
         }
     }
 }

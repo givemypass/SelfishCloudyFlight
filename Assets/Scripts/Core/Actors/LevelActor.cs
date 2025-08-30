@@ -2,6 +2,7 @@ using Core.Components;
 using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
+using SelfishFramework.Src.Unity.Components;
 
 namespace Core.Actors
 {

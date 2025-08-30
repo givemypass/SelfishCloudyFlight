@@ -514,7 +514,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 12.02}
-  m_LocalScale: {x: 1.0209855, y: 0.99791664, z: 1}
+  m_LocalScale: {x: 1.0596818, y: 0.99791664, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -598,33 +598,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4256804846169924760, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6174788301966810640, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9044512334386113556, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
-      propertyPath: playOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7519132660714261584, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: InitMode.initWhen
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8486375434391956750, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.38
+      value: -11.84
       objectReference: {fileID: 0}
     - target: {fileID: 8486375434391956750, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.17
+      value: 1.37
       objectReference: {fileID: 0}
     - target: {fileID: 8486375434391956750, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.98
+      value: 5.06
       objectReference: {fileID: 0}
     - target: {fileID: 8486375434391956750, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: m_LocalRotation.w
@@ -657,6 +645,18 @@ PrefabInstance:
     - target: {fileID: 8495622594230272947, guid: 64362ed6ddb53b844b59d94742868294, type: 3}
       propertyPath: m_Name
       value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256804846169924760, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174788301966810640, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044512334386113556, guid: 7d235e0d6975cb1418de96d6725cbaf3, type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

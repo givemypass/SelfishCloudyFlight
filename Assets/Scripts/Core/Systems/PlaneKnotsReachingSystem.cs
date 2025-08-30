@@ -15,15 +15,15 @@ namespace Core.Systems
 
         public override void InitSystem()
         {
-            _planeFilter = SManager.World.Filter
+            _planeFilter = Owner.GetWorld().Filter
                 .With<PlaneTagComponent>()
                 .With<PositionOnSplineComponent>()
                 .With<TargetSplineComponent>()
                 .Build();
-            _levelFilter = SManager.World.Filter
+            _levelFilter = Owner.GetWorld().Filter
                 .With<LevelComponent>()
                 .Build();
-            _smokeFilter = SManager.World.Filter
+            _smokeFilter = Owner.GetWorld().Filter
                 .With<WritingSmokeVFXMonoProvider>()
                 .Build();
         }

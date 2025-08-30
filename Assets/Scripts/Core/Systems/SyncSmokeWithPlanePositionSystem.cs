@@ -14,11 +14,11 @@ namespace Core.Systems
 
         public override void InitSystem()
         {
-            _smokeFilter = SManager.World.Filter
+            _smokeFilter = Owner.GetWorld().Filter
                 .With<ActorProviderComponent>()
                 .With<WritingSmokeVFXMonoProvider>()
                 .Build();
-            _planeFilter = SManager.World.Filter
+            _planeFilter = Owner.GetWorld().Filter
                 .With<PlaneTagComponent>()
                 .With<TargetSplineComponent>()
                 .With<PositionOnSplineComponent>()

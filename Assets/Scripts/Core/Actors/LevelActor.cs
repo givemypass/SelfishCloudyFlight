@@ -7,7 +7,7 @@ namespace Core.Actors
 {
     public partial class LevelActor : Actor
     {
-        public LevelComponent LevelComponent = new();
+        public LevelContainerTagComponent LevelContainerTagComponent = new();
         public InputListenerTagComponent InputListenerTagComponent = new();
         
         protected override void SetSystems()

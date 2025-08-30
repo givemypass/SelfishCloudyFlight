@@ -17,12 +17,12 @@ namespace Core.Systems
 
         public override void InitSystem()
         {
-            _splineFilter = SManager.World.Filter.With<LevelContainerTagComponent>().Build();
-            _planeFilter = SManager.World.Filter
+            _splineFilter = Owner.GetWorld().Filter.With<LevelContainerTagComponent>().Build();
+            _planeFilter = Owner.GetWorld().Filter
                 .With<PlaneTagComponent>()
                 .Without<TargetSplineComponent>()
                 .Build();
-            _smokeFilter = SManager.World.Filter.With<WritingSmokeVFXMonoProvider>().Build();
+            _smokeFilter = Owner.GetWorld().Filter.With<WritingSmokeVFXMonoProvider>().Build();
         }
 
         public void Update()

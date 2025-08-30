@@ -16,7 +16,7 @@ namespace Core.Systems
 
         public override void InitSystem()
         {
-            _smokeFilter = SManager.World.Filter
+            _smokeFilter = Owner.GetWorld().Filter
                 .With<WritingSmokeVFXMonoProvider>()
                 .With<ManualSmokeTagComponent>()
                 .Build();

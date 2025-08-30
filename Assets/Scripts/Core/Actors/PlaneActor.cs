@@ -10,6 +10,7 @@ namespace Core.Actors
         public PlaneTagComponent PlaneTagComponent = new();
         public InputListenerTagComponent InputListenerTagComponent = new();
         public SpeedCounterComponent SpeedCounterComponent = new();
+        public PositionOnSplineComponent PositionOnSplineComponent = new();
 
         protected override void SetSystems()
         {

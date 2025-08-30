@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorPrefabs:
   - {fileID: 5695441374722576387, guid: d6e51d73e47129c4db63616551b25d55, type: 3}
+  - {fileID: -8143584580283682745, guid: 442cb8028b088a04f95bdbd4372b6d17, type: 3}

@@ -8,12 +8,14 @@ namespace Core.Actors
     public partial class LevelActor : Actor
     {
         public LevelComponent LevelComponent = new();
+        public InputListenerTagComponent InputListenerTagComponent = new();
         
         protected override void SetSystems()
         {
             base.SetSystems();
             Entity.AddSystem<LinearScoreSystem>();
             Entity.AddSystem<TrackReachingMarkersSystem>();
+            Entity.AddSystem<ChangeSmokeColorSystem>();
         }
     }
 }

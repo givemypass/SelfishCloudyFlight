@@ -214,3 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf050174a3a6794187651d1039b1ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitMode:
+    initWhen: 0
+  SpeedCounterComponent:
+    Value: 3.5

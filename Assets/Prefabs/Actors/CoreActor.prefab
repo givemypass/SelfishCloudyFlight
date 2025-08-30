@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cfa95144bd47bfb764c3b8ff354cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitMode:
+    initWhen: 0
   LevelsHolderComponent:
-    Levels: []
+    Levels:
+    - {fileID: 360299748109240733, guid: eb84d4e9b21731d47ab20812b9ebd14a, type: 3}
   GlobalConfigComponent:
     _config:
       TapAccuracyToHit: 1
@@ -64,3 +67,8 @@ MonoBehaviour:
           Value: {r: 1, g: 0.95686275, b: 0.68235296, a: 1}
         - Key: {fileID: 11400000, guid: eb5fddbdc6097af4e9d8c0651bccfaec, type: 2}
           Value: {r: 1, g: 1, b: 1, a: 1}
+  InputActionsComponent:
+    _actions: {fileID: -944628639613478452, guid: c3fca25fc83a70c4b90ac2e592e61069, type: 3}
+    _inputActionSettings:
+    - ActionName: Tap
+      Identifier: {fileID: 11400000, guid: 239106ed7f3e6a3498c656c0e6795086, type: 2}

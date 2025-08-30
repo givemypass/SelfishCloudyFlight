@@ -44,7 +44,7 @@ namespace Core.Systems
                 .Build();
             _startEndMarkersFilter = Owner.GetWorld().Filter.With<StartEndMarkersComponent>().Build();
             _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            _globalConfig = new Single<GlobalConfigComponent>();
+            _globalConfig = new Single<GlobalConfigComponent>(Owner.GetWorld());
         }
 
         public void GlobalStart()

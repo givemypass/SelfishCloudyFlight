@@ -20,7 +20,7 @@ namespace Core.Systems.States
     
         public void GlobalStart()
         {
-            _gameState = new Single<GameStateComponent>();
+            _gameState = new Single<GameStateComponent>(Owner.GetWorld());
             _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().With<PositionOnSplineComponent>().Build();
         }
     

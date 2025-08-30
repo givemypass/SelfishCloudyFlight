@@ -72,3 +72,5 @@ MonoBehaviour:
     _inputActionSettings:
     - ActionName: Tap
       Identifier: {fileID: 11400000, guid: 239106ed7f3e6a3498c656c0e6795086, type: 2}
+  ActorsHolderComponent:
+    LevelActorPrefab: {fileID: 7328143644048828183, guid: 4892afffa800103409bad4597d4ad047, type: 3}

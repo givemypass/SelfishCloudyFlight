@@ -13,6 +13,7 @@ namespace Core.Actors
         public GlobalConfigComponent GlobalConfigComponent = new();
         public SceneManagerTagComponent SceneManagerTagComponent = new();
         public InputActionsComponent InputActionsComponent = new();
+        public ActorsHolderComponent ActorsHolderComponent = new();
         
         protected override void SetSystems()
         {

@@ -1,16 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
-using SelfishFramework.Src.Core.Systems;
 using UnityEngine.SceneManagement;
 
-namespace Core.Systems
+namespace Core.Services
 {
-    public sealed partial class SceneManagerSystem : BaseSystem
+    public sealed class SceneService
     {
         private string _loadedScene;
-
-        public override void InitSystem()
-        {
-        }
 
         public async UniTask LoadScene(string sceneName)
         {

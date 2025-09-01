@@ -1,6 +1,7 @@
 ﻿using Core.Components;
 using Core.Models;
 using Core.MonoBehaviourComponents;
+using Core.Services;
 using Cysharp.Threading.Tasks;
 using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
@@ -22,7 +23,8 @@ namespace Core.Systems.States
         private Single<GlobalConfigComponent> _globalConfig;
         private Single<PlayerProgressComponent> _playerProgress;
         private Single<ActorsHolderComponent> _actorsHolder;
-        private SingleSystem<SceneManagerTagComponent, SceneManagerSystem> _sceneManager;
+        
+        private SceneService _sceneManager;
 
         public override void InitSystem() { }
 
@@ -33,7 +35,8 @@ namespace Core.Systems.States
             _globalConfig = new Single<GlobalConfigComponent>(world);
             _playerProgress = new Single<PlayerProgressComponent>(world);
             _actorsHolder = new Single<ActorsHolderComponent>(world);
-            _sceneManager = new SingleSystem<SceneManagerTagComponent, SceneManagerSystem>(world);
+            
+            _sceneManager = world.DependencyContainer.Get<SceneService>();
 
             //todo
             // AsSingleSystem(ref uiSystem);
@@ -59,7 +62,7 @@ namespace Core.Systems.States
         private async UniTask ProcessStateAsync(LevelMonoComponent level, GlobalConfig globalConfig,
             Actor levelActorPrefab)
         {
-            await _sceneManager.Get().LoadScene(SCENE_NAME);
+            await _sceneManager.LoadScene(SCENE_NAME);
 
             var levelActor = Object.Instantiate(levelActorPrefab);
             levelActor.Init(Owner.GetWorld());

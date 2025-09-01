@@ -21,7 +21,6 @@ namespace Core.Actors
             Entity.AddSystem<InitPlaneTargetSplineSystem>();
             Entity.AddSystem<SyncSmokeWithPlanePositionSystem>();
             Entity.AddSystem<PlaneKnotsReachingSystem>();
-            Entity.AddSystem<SceneManagerSystem>();
             Entity.AddSystem<InputListenSystem>();
         }
     }

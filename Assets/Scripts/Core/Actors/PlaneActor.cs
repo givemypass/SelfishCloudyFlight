@@ -3,6 +3,7 @@ using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Components;
+using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 
 namespace Core.Actors
 {

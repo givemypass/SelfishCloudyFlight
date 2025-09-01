@@ -6,7 +6,7 @@ using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
-using SelfishFramework.Src.Unity.Commands;
+using SelfishFramework.Src.Unity.Features.InputFeature.Commands;
 using SelfishFramework.Src.Unity.Generated;
 using UnityEngine;
 

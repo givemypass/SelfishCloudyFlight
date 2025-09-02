@@ -1,6 +1,8 @@
-﻿using Core.Services;
+﻿using AssetsManagement;
+using Core.Services;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
+using SelfishFramework.Src.Unity.UI.Systems;
 
 namespace Core
 {
@@ -8,8 +10,11 @@ namespace Core
     {
         public override void Register()
         {
-            var container = SManager.World.DependencyContainer;
-            container.Registry(new SceneService());
+            var world = SManager.World;
+            var container = world.DependencyContainer;
+            container.Register(new SceneService());
+            container.Register(new AssetsService());
+            container.Register(new UIService(world));
         }
     }
 }

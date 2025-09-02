@@ -5,6 +5,7 @@ using Core.Services;
 using Cysharp.Threading.Tasks;
 using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.SLogs;
@@ -15,6 +16,7 @@ using UnityEngine;
 
 namespace Core.Systems.States
 {
+    [Injectable]
     public sealed partial class BootstrapLevelStateSystem : BaseGameStateSystem, IGlobalStart
     {
         private const string SCENE_NAME = "Level";
@@ -24,7 +26,7 @@ namespace Core.Systems.States
         private Single<PlayerProgressComponent> _playerProgress;
         private Single<ActorsHolderComponent> _actorsHolder;
         
-        private SceneService _sceneManager;
+        [Inject] private SceneService _sceneManager;
 
         public override void InitSystem() { }
 
@@ -35,11 +37,6 @@ namespace Core.Systems.States
             _globalConfig = new Single<GlobalConfigComponent>(world);
             _playerProgress = new Single<PlayerProgressComponent>(world);
             _actorsHolder = new Single<ActorsHolderComponent>(world);
-            
-            _sceneManager = world.DependencyContainer.Get<SceneService>();
-
-            //todo
-            // AsSingleSystem(ref uiSystem);
         }
 
         protected override int State => GameStateIdentifierMap.BootstrapLevelState;

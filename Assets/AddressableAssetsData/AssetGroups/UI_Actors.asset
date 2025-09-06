@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: UI_Actors
+  m_EditorClassIdentifier: Unity.Addressables.Editor:UnityEditor.AddressableAssets.Settings:AddressableAssetGroup
+  m_GroupName: UI_Actors
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e397da29f80414748b7bb9809ee178ee
+  m_SerializeEntries:
+  - m_GUID: 3c0d842e665a7c44bac82c35e8e8927c
+    m_Address: Assets/Content/UI/Actors/FinishLevelScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65a3c8aefe61ba04fbf76f884a1911df
+    m_Address: Assets/Content/UI/Actors/LevelScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe728bd5a4c96a64f819726b5ddf505a
+    m_Address: Assets/Content/UI/Actors/TutorialScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7e6a050e82a67b44c82be8c848007f78, type: 2}
+  m_SchemaSet:
+    m_Schemas: []

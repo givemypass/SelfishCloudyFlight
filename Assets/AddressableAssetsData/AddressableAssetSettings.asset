@@ -38,14 +38,16 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: 
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
-  - {fileID: 11400000, guid: 83522544c405aab4999a81fcd217432f, type: 2}
+  - {fileID: 11400000, guid: 0f9ebf9f43c26f540a14c73e72e086b3, type: 2}
   - {fileID: 11400000, guid: e0d6d9c8feee1bb4fb09053f14453c57, type: 2}
+  - {fileID: 11400000, guid: 351459177ff65464c9127e34b527216c, type: 2}
+  - {fileID: 11400000, guid: a0194589f15e64b49b2e4c7c6bee053c, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -87,6 +89,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - UIBluePrint
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d6636873744c49545943c9468ab228db, type: 2}

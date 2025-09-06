@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: UI_BluePrints
+  m_EditorClassIdentifier: Unity.Addressables.Editor:UnityEditor.AddressableAssets.Settings:AddressableAssetGroup
+  m_GroupName: UI_BluePrints
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9b242d5cd89c6d848a29e6d17b5b929c
+  m_SerializeEntries:
+  - m_GUID: 0d01edf79f9ff2b42a92a5847638f9b6
+    m_Address: Assets/BluePrints/UIBluePrints/TutorialScreen_UIBluePrint.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIBluePrint
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60799eae611d87d459242d0fc187e43c
+    m_Address: Assets/BluePrints/UIBluePrints/LevelScreen_UIBluePrint.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIBluePrint
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0b9e001b18232a4790ec88ff5af1fa8
+    m_Address: Assets/BluePrints/UIBluePrints/FinishLevelScreen_UIBluePrint.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UIBluePrint
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 7e6a050e82a67b44c82be8c848007f78, type: 2}
+  m_SchemaSet:
+    m_Schemas: []

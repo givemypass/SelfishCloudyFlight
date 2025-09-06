@@ -20,4 +20,10 @@ namespace SelfishFramework.Src.Unity.Generated
     {
         public const int Tap = -775217935;
     }
+    public static class UIIdentifierMap
+    {
+        public const int FinishLevelScreen_UIIdentifier = 245663766;
+        public const int LevelScreen_UIIdentifier = -267212433;
+        public const int TutorialScreen_UIIdentifier = -2054137510;
+    }
 }

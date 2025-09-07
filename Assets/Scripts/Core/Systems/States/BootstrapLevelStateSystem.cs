@@ -85,7 +85,7 @@ namespace Core.Systems.States
             monoComponent.Reset.onClick.AddListener(OnReset);
         }
 
-        private void OnReset()
+        private static void OnReset()
         {
             SManager.World.Command(new ForceGameStateTransitionGlobalCommand
             { 

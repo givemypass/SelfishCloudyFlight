@@ -49,3 +49,5 @@ MonoBehaviour:
   PlayerProgressComponent:
     LevelIndex: 0
     TutorialPassed: 0
+  PlayerSettingsComponent:
+    Language: en

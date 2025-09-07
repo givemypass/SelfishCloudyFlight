@@ -93,6 +93,7 @@ namespace Core.Systems
 
         void IReactGlobal<StartEndMarkersInitializedCommand>.ReactGlobal(StartEndMarkersInitializedCommand command)
         {
+            _startEndMarkersFilter.ForceUpdate();
             foreach (var entity in _startEndMarkersFilter)
             {
                 ref var startEndMarkersComponent = ref entity.Get<StartEndMarkersComponent>();

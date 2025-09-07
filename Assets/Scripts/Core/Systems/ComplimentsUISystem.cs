@@ -25,6 +25,7 @@ namespace Core.Systems
         
         public override void InitSystem()
         {
+            _playerSettingsComponent = new Single<PlayerSettingsComponent>(Owner.GetWorld());
             _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().Build();
         }
 

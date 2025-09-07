@@ -24,6 +24,8 @@ namespace Core.Systems
         {
             _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().With<TargetSplineComponent>().Build();
             _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            ref var component = ref Owner.Get<StartEndMarkersComponent>();
+            component.Markers = new();
         }
 
         public void AfterEntityInit()

@@ -65,11 +65,11 @@ namespace Core.Systems.States
             await _sceneManager.LoadScene(SCENE_NAME);
 
             var levelActor = Object.Instantiate(levelActorPrefab);
-            levelActor.Init(Owner.GetWorld());
+            levelActor.SetEntity(Owner.GetWorld());
             var levelComponent = levelActor.Entity.Get<LevelComponent>();
             levelComponent.Level = level;
             levelActor.Entity.Set(levelComponent);
-            levelActor.InitSystems();
+            levelActor.InitEntity();
             
             var colors = level.GetColors().Select(c => globalConfig.ColorPallete[c]).ToArray();
             await ShowUI(colors);

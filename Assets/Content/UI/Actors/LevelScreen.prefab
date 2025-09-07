@@ -364,6 +364,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitMode:
     initWhen: 0
+  ComplimentsHolderComponent:
+    Prefab: {fileID: -4685109576233882865, guid: 7cace8bf7fa4bf34d829e378b7d31493, type: 3}
+    PassSuccessfully:
+      Compliments:
+      - Language: ru
+        Sprites:
+        - {fileID: 21300000, guid: 2be82b298fb00e04f9b42553e2816f18, type: 3}
+      - Language: en
+        Sprites:
+        - {fileID: 21300000, guid: bd5348808d2e4df4a82de3525d9b3524, type: 3}
+        - {fileID: 21300000, guid: aa6cd8759fe02364ab79035c44badefb, type: 3}
+      ParticleSystem: {fileID: 0}
+      RotationRange: 15
+      ScaleRange: {x: 0.3, y: 0.3}
+    Hit:
+      Compliments:
+      - Language: ru
+        Sprites:
+        - {fileID: 21300000, guid: 25c3cd0050b4c864d8c5d2b55967b31d, type: 3}
+        - {fileID: 21300000, guid: c9aaf28868cba08408c51a47652160a7, type: 3}
+      - Language: en
+        Sprites:
+        - {fileID: 21300000, guid: d505914af12a5234da9498fa7df4e785, type: 3}
+        - {fileID: 21300000, guid: 7ce395321ef03f149b66c2e3b3e87f8d, type: 3}
+      ParticleSystem: {fileID: 8136010636522324950, guid: b73874009336fa345a4fb34773882cd1, type: 3}
+      RotationRange: 15
+      ScaleRange: {x: 0.4, y: 0.6}
+    Miss:
+      Compliments:
+      - Language: ru
+        Sprites:
+        - {fileID: 21300000, guid: 006887553cc14b7419df95f8cb657d70, type: 3}
+      - Language: en
+        Sprites:
+        - {fileID: 21300000, guid: e414cb0824552b6489e3b6d747c2cd9c, type: 3}
+      ParticleSystem: {fileID: 0}
+      RotationRange: 15
+      ScaleRange: {x: 0.3, y: 0.3}
+    SpawnOffset: 15
+    CompletedParticle: {fileID: 2740938819077633336, guid: 56ea444793aeebb4481ead369a989787, type: 3}
 --- !u!114 &3007514871147977510
 MonoBehaviour:
   m_ObjectHideFlags: 0

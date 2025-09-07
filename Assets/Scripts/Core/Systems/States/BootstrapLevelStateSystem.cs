@@ -1,9 +1,10 @@
-﻿using Core.Components;
+﻿using System.Linq;
+using Core.Components;
 using Core.Models;
 using Core.MonoBehaviourComponents;
+using Core.MonoBehaviourComponents.GUI;
 using Core.Services;
 using Cysharp.Threading.Tasks;
-using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.SystemModules;
@@ -11,6 +12,7 @@ using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.SLogs;
 using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Generated;
+using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 using UnityEngine;
 
@@ -27,6 +29,7 @@ namespace Core.Systems.States
         private Single<ActorsHolderComponent> _actorsHolder;
         
         [Inject] private SceneService _sceneManager;
+        [Inject] private UIService _uiService;
 
         public override void InitSystem() { }
 
@@ -68,20 +71,19 @@ namespace Core.Systems.States
             levelActor.Entity.Set(levelComponent);
             levelActor.InitSystems();
             
-            //todo
-            // var colors = level.GetColors().Select(c => globalConfig.ColorPallete[c]).ToArray();
-            // await ShowUI(colors);
+            var colors = level.GetColors().Select(c => globalConfig.ColorPallete[c]).ToArray();
+            await ShowUI(colors);
             
             EndState();
         }
 
-        // private async UniTask ShowUI(Color[] colors)
-        // {
-            // var uiEnt = await uiSystem.ShowUI(UIIdentifierMap.LevelScreen_UIIdentifier);
-            // var monoComponent = uiEnt.AsActor().GetComponent<LevelScreenUIMonoComponent>();
-            // monoComponent.SetLevelColors(colors);
-            // monoComponent.Reset.onClick.AddListener(OnReset);
-        // }
+        private async UniTask ShowUI(Color[] colors)
+        {
+            var actor = await _uiService.ShowUIAsync(UIIdentifierMap.LevelScreen_UIIdentifier);
+            var monoComponent = actor.GetComponent<LevelScreenUIMonoComponent>();
+            monoComponent.SetLevelColors(colors);
+            monoComponent.Reset.onClick.AddListener(OnReset);
+        }
 
         private void OnReset()
         {

@@ -1,7 +1,7 @@
-﻿using AssetsManagement;
-using Core.Services;
+﻿using Core.Services;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
+using SelfishFramework.Src.Unity.AssetsManagement;
 using SelfishFramework.Src.Unity.UI.Systems;
 
 namespace Core
@@ -14,6 +14,7 @@ namespace Core
             var container = world.DependencyContainer;
             container.Register(new SceneService());
             container.Register(new AssetsService());
+            container.Register(new ActorPoolingService());
             container.Register(new UIService(world));
         }
     }

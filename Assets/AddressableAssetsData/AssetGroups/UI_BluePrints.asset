@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: UI_BluePrints
-  m_EditorClassIdentifier: Unity.Addressables.Editor:UnityEditor.AddressableAssets.Settings:AddressableAssetGroup
+  m_EditorClassIdentifier: 
   m_GroupName: UI_BluePrints
   m_Data:
     m_SerializedData: []
-  m_GUID: 9b242d5cd89c6d848a29e6d17b5b929c
+  m_GUID: d45d68ffbfd4c0640a5ae307046bb04e
   m_SerializeEntries:
   - m_GUID: 0d01edf79f9ff2b42a92a5847638f9b6
     m_Address: Assets/BluePrints/UIBluePrints/TutorialScreen_UIBluePrint.asset
@@ -38,4 +38,6 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7e6a050e82a67b44c82be8c848007f78, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: cabf624c165352241b48f5716cdc057b, type: 2}
+    - {fileID: 11400000, guid: 0d2d6093807a2bf41874ccf1fe86e5a9, type: 2}

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: UI_Actors
-  m_EditorClassIdentifier: Unity.Addressables.Editor:UnityEditor.AddressableAssets.Settings:AddressableAssetGroup
+  m_EditorClassIdentifier: 
   m_GroupName: UI_Actors
   m_Data:
     m_SerializedData: []
-  m_GUID: e397da29f80414748b7bb9809ee178ee
+  m_GUID: 8c31577cf49bd554a92d7eac04853511
   m_SerializeEntries:
   - m_GUID: 3c0d842e665a7c44bac82c35e8e8927c
     m_Address: Assets/Content/UI/Actors/FinishLevelScreen.prefab
@@ -35,4 +35,6 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7e6a050e82a67b44c82be8c848007f78, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: 187a804a2ffd3ed469d31c5bc7228307, type: 2}
+    - {fileID: 11400000, guid: 2452ceb1e735b304ba61330785e92389, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelScreen_UIBluePrint
   m_EditorClassIdentifier: 
   UIActor:
-    m_AssetGUID: 
+    m_AssetGUID: 65a3c8aefe61ba04fbf76f884a1911df
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

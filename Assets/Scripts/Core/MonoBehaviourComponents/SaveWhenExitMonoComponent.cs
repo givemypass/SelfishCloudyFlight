@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Features.GameFSM.Components;
+using SelfishFramework.Src.Unity.Commands;
+using UnityEngine;
 
 namespace Core.MonoBehaviourComponents
 {
@@ -9,21 +12,25 @@ namespace Core.MonoBehaviourComponents
         {
             if (!onPause)
                 return;
-            if (EntityManager.IsAlive &&
-                EntityManager.Default.TryGetSingleComponent(out GameStateComponent gameStateComponent) &&
-                gameStateComponent.CurrentState != 0)
+            if (!SManager.IsAlive)
             {
-                EntityManager.Default.Command(new BeforeSaveCommand());
-                EntityManager.Default.Command(new SaveCommand());
+                return;
+            }
+            var filter = SManager.World.Filter.With<GameStateComponent>().Build();
+            foreach (var entity in filter)
+            {
+                ref var gameStateComponent = ref entity.Get<GameStateComponent>();
+                if (gameStateComponent.CurrentState == 0) continue;
+                SManager.World.Command(new BeforeSaveCommand());
+                SManager.World.Command(new SaveCommand());
             }
         }
 #endif
 #if UNITY_EDITOR
         private void OnApplicationQuit()
         {
-            //todo make after implementing commands
-            // EntityManager.Default.Command(new BeforeSaveCommand());
-            // EntityManager.Default.Command(new SaveCommand());
+            SManager.World.Command(new BeforeSaveCommand());
+            SManager.World.Command(new SaveCommand());
         }
 #endif
     }

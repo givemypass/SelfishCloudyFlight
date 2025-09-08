@@ -1,27 +1,35 @@
 using System;
 using Core.Components;
+using Core.MonoBehaviourComponents.GUI;
 using Cysharp.Threading.Tasks;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
+using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.Unity.Generated;
+using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 
 namespace Core.Systems.States
 {
+    [Injectable]
     public sealed partial class FinishLevelStateSystem : BaseGameStateSystem, IGlobalStart
     {
-        private Filter _levelFilter;
+        [Inject] private UIService _uiService;
         
+        private Filter _levelFilter;
+        private Single<PlayerProgressComponent> _playerProgressComponent;
+        private Single<LevelsHolderComponent> _levelHolder;
+
         public override void InitSystem() { }
     
         public void GlobalStart()
         {
-            // playerProgress = EntityManager.Default.GetComponentFromSingleTag<PlayerTagComponent, PlayerProgressComponent>();
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            _playerProgressComponent = new Single<PlayerProgressComponent>(Owner.GetWorld());
+            _levelHolder = new Single<LevelsHolderComponent>(Owner.GetWorld());
             
-            // AsSingle(ref levelHolder);
-            // AsSingleSystem(ref uiSystem);
+            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
         }
     
         protected override int State => GameStateIdentifierMap.FinishLevelState;
@@ -33,20 +41,25 @@ namespace Core.Systems.States
 
         private async UniTask ProcessStateAsync()
         {
-            // var uiEnt = await uiSystem.ShowUI(UIIdentifierMap.FinishLevelScreen_UIIdentifier);
-            // var monoComponent = uiEnt.AsActor().GetComponent<FinishLevelScreenUIMonoComponent>();
-            // monoComponent.Reset.onClick.AddListener(OnReset);
-            // monoComponent.Next.onClick.AddListener(OnNext);
-            // if (IsCompleted())
-            // {
-            //     playerProgress.LevelIndex = levelHolder.GetNextLevelIndex(playerProgress.LevelIndex);
-            // }
-            // else
-            // {
-            //     monoComponent.Next.gameObject.SetActive(false);
-            // }
+            var uiActor = await _uiService.ShowUIAsync(UIIdentifierMap.FinishLevelScreen_UIIdentifier);
+            var monoComponent = uiActor.GetComponent<FinishLevelScreenUIMonoComponent>();
+            monoComponent.Reset.onClick.AddListener(OnReset);
+            monoComponent.Next.onClick.AddListener(OnNext);
+            if (IsCompleted())
+            {
+                IncrementLevel();
+            }
+            else
+            {
+                monoComponent.Next.gameObject.SetActive(false);
+            }
         }
 
+        private void IncrementLevel()
+        {
+            ref var playerProgress = ref _playerProgressComponent.Get();
+            playerProgress.LevelIndex = _levelHolder.Get().GetNextLevelIndex(playerProgress.LevelIndex);
+        }
 
         private bool IsCompleted()
         {
@@ -60,10 +73,7 @@ namespace Core.Systems.States
 
         protected override void OnExitState()
         {
-            // EntityManager.Default.Command(new HideUICommand
-            // {
-            //     UIViewType = UIIdentifierMap.FinishLevelScreen_UIIdentifier
-            // });
+            _uiService.CloseUI(UIIdentifierMap.FinishLevelScreen_UIIdentifier);
         }
         
         private void OnNext()
@@ -73,14 +83,15 @@ namespace Core.Systems.States
 
         private void OnReset()
         {
-            // if (IsCompleted())
-            // {
-            //     playerProgress.LevelIndex = levelHolder.GetPreviousLevelIndex(playerProgress.LevelIndex);
-            // }
-            // EntityManager.Default.Command(new ForceGameStateTransitionGlobalCommand
-            // {
-            //     GameState = GameStateIdentifierMap.BootstrapLevelState
-            // });
+            if (IsCompleted())
+            {
+                ref var playerProgress = ref _playerProgressComponent.Get();
+                playerProgress.LevelIndex = _levelHolder.Get().GetPreviousLevelIndex(playerProgress.LevelIndex);
+            }
+            SManager.World.Command(new ForceGameStateTransitionGlobalCommand
+            {
+                GameState = GameStateIdentifierMap.BootstrapLevelState,
+            });
         }
     }
 }

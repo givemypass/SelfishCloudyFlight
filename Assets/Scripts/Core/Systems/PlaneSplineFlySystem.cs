@@ -2,6 +2,7 @@
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
+using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Components;
 using UnityEngine;
 
@@ -28,11 +29,10 @@ namespace Core.Systems
             if (!Owner.Has<TargetSplineComponent>())
                 return;
             
-            ref var actorProviderComponent = ref Owner.Get<ActorProviderComponent>();
             ref var targetSplineComponent = ref Owner.Get<TargetSplineComponent>();
             ref var positionOnSplineComponent = ref Owner.Get<PositionOnSplineComponent>();
             ref var speedCounterComponent = ref Owner.Get<SpeedCounterComponent>();
-            var actor = actorProviderComponent.Actor;
+            var actor = Owner.AsActor();
             
             actor.transform.localScale = Vector3.Lerp(actor.transform.localScale,
                 _targetScale, 10f * Time.deltaTime);

@@ -1,19 +1,21 @@
-﻿using System;
-using Core.Commands;
+﻿using Core.Commands;
 using Core.Components;
-using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Features.GameFSM.Components;
 using SelfishFramework.Src.Unity.Generated;
+using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 
 namespace Core.Systems.States
 {
-    [Serializable]
+    [Injectable]
     public sealed partial class LevelStateSystem : BaseGameStateSystem, IGlobalStart, IUpdatable
     {
+        [Inject] private UIService _uiService;
+        
         private Filter _planeFilter;
         private Single<GameStateComponent> _gameState;
         public override void InitSystem() { }
@@ -33,10 +35,7 @@ namespace Core.Systems.States
 
         protected override void OnExitState()
         {
-            // EntityManager.Default.Command(new HideUICommand()
-            // {
-            //     UIViewType = UIIdentifierMap.LevelScreen_UIIdentifier
-            // });
+            _uiService.CloseUI(UIIdentifierMap.LevelScreen_UIIdentifier);
         }
 
         public void Update()

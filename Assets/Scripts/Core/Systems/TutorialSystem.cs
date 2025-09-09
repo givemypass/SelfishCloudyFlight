@@ -9,6 +9,7 @@ using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Features.GameFSM.Commands;
+using SelfishFramework.Src.SLogs;
 using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
 using UnityEngine;
@@ -59,7 +60,10 @@ namespace Core.Systems
         
         private static void SetTimeScale(int targetTimeScale)
         {
-            DOVirtual.Float(Time.timeScale, targetTimeScale, 0.1f, value => Time.timeScale = value).SetEase(Ease.InOutSine);
+            DOVirtual
+                .Float(Time.timeScale, targetTimeScale, 0.1f, value => Time.timeScale = value)
+                .SetEase(Ease.InOutSine)
+                .SetUpdate(true);
         }
 
         public void Update()

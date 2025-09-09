@@ -53,7 +53,7 @@ namespace Core.Systems
         {
             return Path.Combine(Application.persistentDataPath, "save.json");
         }
-
+        
         [JsonObject]
         [Serializable]
         private struct SaveModel

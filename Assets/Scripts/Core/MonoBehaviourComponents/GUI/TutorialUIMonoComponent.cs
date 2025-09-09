@@ -21,7 +21,7 @@ namespace Core.MonoBehaviourComponents.GUI
                 .Join(TapText.transform.DOScale(new Vector3(TWEEN_SCALE, TWEEN_SCALE, 1f), 1f)
                     .SetEase(Ease.InOutSine)
                     .SetLoops(100, LoopType.Yoyo)
-                );
+                ).SetUpdate(true);
         }
 
         private void OnDestroy()

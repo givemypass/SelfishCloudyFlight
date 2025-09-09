@@ -1,4 +1,6 @@
 using Core.Components;
+using Core.Systems;
+using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 
 namespace Core.Actors
@@ -7,5 +9,11 @@ namespace Core.Actors
     {
         public PlayerProgressComponent PlayerProgressComponent = new();
         public PlayerSettingsComponent PlayerSettingsComponent = new();
+
+        protected override void SetSystems()
+        {
+            base.SetSystems();
+            Entity.AddSystem<SaveLoadSystem>();
+        }
     }
 }

@@ -1,55 +1,67 @@
-﻿using Core.Commands;
+﻿using System;
+using System.IO;
+using Core.Commands;
+using Core.Components;
 using Newtonsoft.Json;
+using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Systems;
+using SelfishFramework.Src.Features.Features.Serialization;
+using SelfishFramework.Src.SLogs;
 using SelfishFramework.Src.Unity.Commands;
+using UnityEngine;
 
 namespace Core.Systems
 {
     public sealed partial class SaveLoadSystem : BaseSystem, IReactGlobal<SaveCommand>, IReactGlobal<LoadProgressCommand>
     {
-        private const string SAVE_KEY = "SAVE_KEY";
-        
         public override void InitSystem() { }
 
-        void IReactGlobal<SaveCommand>.ReactGlobal(SaveCommand command) => SaveEntitiesData();
-        void IReactGlobal<LoadProgressCommand>.ReactGlobal(LoadProgressCommand command) => LoadEntitiesData();
+        void IReactGlobal<SaveCommand>.ReactGlobal(SaveCommand command) => Save();
+        void IReactGlobal<LoadProgressCommand>.ReactGlobal(LoadProgressCommand command) => Load();
 
-        private void SaveEntitiesData()
+        private void Save()
         {
-//             JSONEntityContainer container = new JSONEntityContainer();
-//             container.SerializeEntitySavebleOnly(Owner);
-//             if (container.Components.Count == 0 && container.Systems.Count == 0)
-//             {
-//                 HECSDebug.LogWarning($"Nothing to save on {Owner.ID}");
-//                 return;
-//             }
-//             string json = JsonConvert.SerializeObject(container);
-// #if UNITY_WEBGL && !UNITY_EDITOR
-//             PlayerPrefs.SetString(SAVE_KEY, json);
-//             PlayerPrefs.Save();           
-// #else
-//             string path = SavePathProvider.GetSavePath(ContainerIndex());
-//             SaveManager.SaveJson(path, json);
-// #endif
+            ref var playerProgress = ref Owner.Get<PlayerProgressComponent>(); 
+            var saveModel = new SaveModel
+            {
+                LevelIndex = playerProgress.LevelIndex,
+                TutorialPassed = playerProgress.TutorialPassed,
+            };
+            string json = JsonConvert.SerializeObject(saveModel);
+            JsonHelper.SaveJson(SavePath(), json);
+            SLog.Log("Game saved successfully.");
         }
 
-        private void LoadEntitiesData()
+        private void Load()
         {
-// #if UNITY_WEBGL && !UNITY_EDITOR
-//             var hasSaves = PlayerPrefs.HasKey(SAVE_KEY);
-//             var json = PlayerPrefs.GetString(SAVE_KEY);           
-// #else
-//             var hasSaves = SaveManager.TryLoadJson(SavePathProvider.GetSavePath(ContainerIndex()), out string json);
-// #endif
-//             if (hasSaves)
-//             {
-//                 JSONEntityContainer container = JsonConvert.DeserializeObject<JSONEntityContainer>(json);
-//                 container.DeserializeToEntity(Owner);
-//             }
+            if (JsonHelper.TryLoadJson(SavePath(), out var json))
+            {
+                var saveModel = JsonConvert.DeserializeObject<SaveModel>(json);
+                ref var playerProgress = ref Owner.Get<PlayerProgressComponent>();
+                playerProgress.LevelIndex = saveModel.LevelIndex;
+                playerProgress.TutorialPassed = saveModel.TutorialPassed;
+                SLog.Log("Game loaded successfully.");
+            }
+            else
+            {
+                SLog.LogWarning("No save data found.");
+            } 
         }
 
-        // private string ContainerIndex() =>
-            // Owner.GetComponent<ActorContainerID>().ContainerIndex.ToString();
+        private static string SavePath()
+        {
+            return Path.Combine(Application.persistentDataPath, "save.json");
+        }
+
+        [JsonObject]
+        [Serializable]
+        private struct SaveModel
+        {
+            [JsonProperty("LevelIndex")]
+            public int LevelIndex;
+            [JsonProperty("TutorialPassed")]
+            public bool TutorialPassed;
+        }
     }
 }

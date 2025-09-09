@@ -219,9 +219,9 @@ GameObject:
   m_Component:
   - component: {fileID: 137062354173273918}
   - component: {fileID: 8439486171362584770}
-  - component: {fileID: 3221276697267278422}
   - component: {fileID: 5683083407658937384}
   - component: {fileID: 6886632916437745802}
+  - component: {fileID: 5819775607187571332}
   m_Layer: 5
   m_Name: TutorialScreen
   m_TagString: Untagged
@@ -258,20 +258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8625744812925767178}
   m_CullTransparentMesh: 1
---- !u!114 &3221276697267278422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625744812925767178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aecf639bf71423cb05f0d79189e5d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitMode:
-    initWhen: 0
 --- !u!114 &5683083407658937384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,3 +284,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5819775607187571332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625744812925767178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734d07cbe0704a92b29beed4716454f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitMode:
+    initWhen: 0

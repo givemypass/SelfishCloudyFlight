@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Core.Commands;
 using Core.Components;
+using Core.Models;
 using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
@@ -13,6 +15,7 @@ using UnityEngine;
 
 namespace Core.Systems
 {
+    [Injectable]
     public sealed partial class TrackReachingMarkersSystem : BaseSystem,
         IGlobalStart,
         IUpdatable,
@@ -20,6 +23,8 @@ namespace Core.Systems
         IReactLocal<InputEndedCommand>,
         IReactGlobal<StartEndMarkersInitializedCommand>
     {
+        [Inject] private GlobalConfigSO _globalConfig;
+        
         private struct PointData
         {
             public int Point;
@@ -33,7 +38,6 @@ namespace Core.Systems
         private Queue<StartEndMarkersComponent.Point> _points;
 
         private PointData? _pointData;
-        private Single<GlobalConfigComponent> _globalConfig;
 
         public override void InitSystem()
         {
@@ -44,7 +48,6 @@ namespace Core.Systems
                 .Build();
             _startEndMarkersFilter = Owner.GetWorld().Filter.With<StartEndMarkersComponent>().Build();
             _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            _globalConfig = new Single<GlobalConfigComponent>(Owner.GetWorld());
         }
 
         public void GlobalStart()
@@ -63,7 +66,7 @@ namespace Core.Systems
                 
                 if (!_pointData.Value.IsEnd)
                 {
-                    if (index - point > _globalConfig.Get().Get.TapAccuracyToPass)
+                    if (index - point > _globalConfig.Get.TapAccuracyToPass)
                     {
                         //miss
                         ApplyMiss();
@@ -73,7 +76,7 @@ namespace Core.Systems
                 }
                 else
                 {
-                     if (index - point > _globalConfig.Get().Get.ReleaseAccuracyToPass)
+                     if (index - point > _globalConfig.Get.ReleaseAccuracyToPass)
                      {
                          //miss
                         ApplyMiss();
@@ -92,13 +95,11 @@ namespace Core.Systems
         private void ApplyPass()
         {
             Owner.GetWorld().Command(new PassMarkerSuccessfullyCommand());
-            IncreaseProgress(1);
         }
 
         private void ApplyHit()
         {
             Owner.GetWorld().Command(new HitMarkerCommand());
-            IncreaseProgress(2);
         }
 
         private static int GetPlanePosIndex(Entity plane)
@@ -127,18 +128,6 @@ namespace Core.Systems
             }
         }
         
-        private void IncreaseProgress(int value)
-        {
-            return;
-            foreach (var level in _levelFilter)
-            {
-                ref var levelComponent = ref level.Get<LevelComponent>();
-                levelComponent.LevelProgress += value;
-                Owner.GetWorld().Command(new LevelProgressUpdatedCommand());
-                break;
-            }
-        }
-
         void IReactLocal<InputStartedCommand>.ReactLocal(InputStartedCommand command)
         {
             if (_pointData == null || _pointData.Value.IsEnd || command.Index != InputIdentifierMap.Tap)
@@ -151,7 +140,7 @@ namespace Core.Systems
             {
                 var index = GetPlanePosIndex(plane);
                 
-                if (Mathf.Abs(index - point) <= _globalConfig.Get().Get.TapAccuracyToHit)
+                if (Mathf.Abs(index - point) <= _globalConfig.Get.TapAccuracyToHit)
                 {
                     //hit
                     ApplyHit();
@@ -159,7 +148,7 @@ namespace Core.Systems
                     return;
                 }
                 
-                if (Mathf.Abs(index - point) <= _globalConfig.Get().Get.TapAccuracyToPass)
+                if (Mathf.Abs(index - point) <= _globalConfig.Get.TapAccuracyToPass)
                 {
                     //pass
                     ApplyPass();
@@ -184,7 +173,7 @@ namespace Core.Systems
             {
                 var index = GetPlanePosIndex(plane);
                 
-                if (Mathf.Abs(index - point) <= _globalConfig.Get().Get.ReleaseAccuracyToHit)
+                if (Mathf.Abs(index - point) <= _globalConfig.Get.ReleaseAccuracyToHit)
                 {
                     //hit
                     ApplyHit();
@@ -192,7 +181,7 @@ namespace Core.Systems
                     return;
                 }
                 
-                if (Mathf.Abs(index - point) <= _globalConfig.Get().Get.ReleaseAccuracyToPass)
+                if (Mathf.Abs(index - point) <= _globalConfig.Get.ReleaseAccuracyToPass)
                 {
                     //pass
                     ApplyPass();

@@ -10,7 +10,6 @@ namespace Core.Actors
     public partial class CoreActor : Actor 
     {
         public LevelsHolderComponent LevelsHolderComponent = new();
-        public GlobalConfigComponent GlobalConfigComponent = new();
         public SceneManagerTagComponent SceneManagerTagComponent = new();
         public InputActionsComponent InputActionsComponent = new();
         public ActorsHolderComponent ActorsHolderComponent = new();

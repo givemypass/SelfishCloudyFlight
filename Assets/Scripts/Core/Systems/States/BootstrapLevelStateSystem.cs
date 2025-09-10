@@ -24,12 +24,12 @@ namespace Core.Systems.States
         private const string SCENE_NAME = "Level";
         
         private Single<LevelsHolderComponent> _levelsHolder;
-        private Single<GlobalConfigComponent> _globalConfig;
         private Single<PlayerProgressComponent> _playerProgress;
         private Single<ActorsHolderComponent> _actorsHolder;
         
         [Inject] private SceneService _sceneManager;
         [Inject] private UIService _uiService;
+        [Inject] private GlobalConfigSO _globalConfig;
 
         public override void InitSystem() { }
 
@@ -37,7 +37,6 @@ namespace Core.Systems.States
         {
             var world = Owner.GetWorld();
             _levelsHolder = new Single<LevelsHolderComponent>(world);
-            _globalConfig = new Single<GlobalConfigComponent>(world);
             _playerProgress = new Single<PlayerProgressComponent>(world);
             _actorsHolder = new Single<ActorsHolderComponent>(world);
         }
@@ -46,7 +45,7 @@ namespace Core.Systems.States
 
         protected override void ProcessState(int from, int to)
         {
-            if(!_levelsHolder.Exists() || !_globalConfig.Exists() || !_playerProgress.Exists())
+            if(!_levelsHolder.Exists() || !_playerProgress.Exists())
             {
                 SLog.LogError("Required components are not found in the world.");
                 return;
@@ -54,7 +53,7 @@ namespace Core.Systems.States
 
             var levelIndex = _playerProgress.Get().LevelIndex;
             _levelsHolder.Get().TryGetLevel(levelIndex, out var currentLevel);
-            var globalConfig = _globalConfig.Get().Get;
+            var globalConfig = _globalConfig.Get;
             var levelActorPrefab = _actorsHolder.Get().LevelActorPrefab;
             ProcessStateAsync(currentLevel, globalConfig, levelActorPrefab).Forget();
         }

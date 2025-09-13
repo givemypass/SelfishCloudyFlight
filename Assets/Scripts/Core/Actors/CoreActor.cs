@@ -6,13 +6,13 @@ using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 using SelfishFramework.Src.Unity.Features.InputFeature.Systems;
 using InitPlaneTargetSplineSystem = Core.Features.PlaneFeature.Systems.InitPlaneTargetSplineSystem;
+using PlaneKnotsReachingSystem = Core.CommonSystems.PlaneKnotsReachingSystem;
 
 namespace Core.Actors
 {
     public partial class CoreActor : Actor 
     {
         public LevelsHolderComponent LevelsHolderComponent = new();
-        public SceneManagerTagComponent SceneManagerTagComponent = new();
         public InputActionsComponent InputActionsComponent = new();
         public ActorsHolderComponent ActorsHolderComponent = new();
         

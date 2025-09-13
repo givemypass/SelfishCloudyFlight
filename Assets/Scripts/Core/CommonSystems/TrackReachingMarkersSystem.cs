@@ -3,18 +3,15 @@ using Core.Commands;
 using Core.CommonCommands;
 using Core.CommonComponents;
 using Core.Models;
-using SelfishFramework.Src;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
-using SelfishFramework.Src.Unity.Features.InputFeature.Commands;
-using SelfishFramework.Src.Unity.Generated;
 using UnityEngine;
 
-namespace Core.Systems
+namespace Core.CommonSystems
 {
     [Injectable]
     public sealed partial class TrackReachingMarkersSystem : BaseSystem,

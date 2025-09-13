@@ -5,7 +5,7 @@ using SelfishFramework.Src.Unity.Generated;
 using Systems;
 using Application = UnityEngine.Device.Application;
 
-namespace Core.Systems.States
+namespace Core.CommonSystems.States
 {
     public sealed partial class BootstrapStateSystem : BaseGameStateSystem, IGlobalStart
     {

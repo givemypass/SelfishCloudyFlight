@@ -9,7 +9,7 @@ using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 
-namespace Core.Systems.States
+namespace Core.CommonSystems.States
 {
     [Injectable]
     public sealed partial class LevelStateSystem : BaseGameStateSystem, IGlobalStart, IUpdatable

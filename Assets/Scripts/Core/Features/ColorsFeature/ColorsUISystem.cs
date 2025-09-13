@@ -5,7 +5,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 
-namespace Core.Systems
+namespace Core.Features.ColorsFeature
 {
     public sealed partial class ColorsUISystem : BaseSystem, IAfterEntityInit
     {

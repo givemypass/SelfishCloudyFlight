@@ -16,7 +16,7 @@ using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 using UnityEngine;
 
-namespace Core.Systems.States
+namespace Core.CommonSystems.States
 {
     [Injectable]
     public sealed partial class BootstrapLevelStateSystem : BaseGameStateSystem, IGlobalStart

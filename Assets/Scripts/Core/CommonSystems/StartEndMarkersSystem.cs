@@ -9,7 +9,7 @@ using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 using UnityEngine;
 
-namespace Core.Systems
+namespace Core.CommonSystems
 {
     public sealed partial class StartEndMarkersSystem : BaseSystem, IAfterEntityInit, IUpdatable
     {

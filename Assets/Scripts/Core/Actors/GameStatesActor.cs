@@ -2,6 +2,11 @@
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Features.GameFSM.Components;
 using SelfishFramework.Src.Unity;
+using BootstrapLevelStateSystem = Core.CommonSystems.States.BootstrapLevelStateSystem;
+using BootstrapStateSystem = Core.CommonSystems.States.BootstrapStateSystem;
+using FinishLevelStateSystem = Core.CommonSystems.States.FinishLevelStateSystem;
+using GameStateMachineSystem = Core.CommonSystems.States.GameStateMachineSystem;
+using LevelStateSystem = Core.CommonSystems.States.LevelStateSystem;
 
 namespace Core.Actors
 {

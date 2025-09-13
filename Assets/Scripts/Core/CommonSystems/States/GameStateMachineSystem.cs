@@ -3,7 +3,7 @@ using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.Features.GameFSM.Systems;
 using SelfishFramework.Src.Unity.Generated;
 
-namespace Core.Systems.States
+namespace Core.CommonSystems.States
 {
     public sealed partial class GameStateMachineSystem : BaseMainGameLogicSystem, ILateStart
     {

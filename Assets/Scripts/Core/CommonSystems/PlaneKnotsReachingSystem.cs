@@ -5,7 +5,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using UnityEngine.Splines;
 
-namespace Core.Systems
+namespace Core.CommonSystems
 {
     public sealed partial class PlaneKnotsReachingSystem : BaseSystem, IUpdatable
     {
@@ -39,19 +39,12 @@ namespace Core.Systems
                 var tPos = positionOnSplineComponent.TPos;
                 if (tPos >= positionOnSplineComponent.NextKnotTPos)
                 {
-                    //todo
-                    // EntityManager.Default.Command(new KnotReachedCommand
-                    // {
-                    //     KnotIndex = positionOnSplineComponent.NextKnotIndex,
-                    // });
                     ApplyOverrides();
-                    
                     positionOnSplineComponent.NextKnotIndex++;
                     var nextKnotT = spline.ConvertIndexUnit(positionOnSplineComponent.NextKnotIndex, PathIndexUnit.Knot, PathIndexUnit.Normalized);
                     positionOnSplineComponent.NextKnotTPos = nextKnotT;
                 }
             }
-            
         }
         
         private void ApplyOverrides()

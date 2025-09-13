@@ -4,6 +4,8 @@ using Core.Features.ScoreFeature.Systems;
 using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
+using ChangeSmokeColorSystem = Core.Features.ColorsFeature.ChangeSmokeColorSystem;
+using TrackReachingMarkersSystem = Core.CommonSystems.TrackReachingMarkersSystem;
 
 namespace Core.Actors
 {

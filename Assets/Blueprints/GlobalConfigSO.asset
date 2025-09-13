@@ -17,6 +17,8 @@ MonoBehaviour:
     TapAccuracyToPass: 2
     ReleaseAccuracyToHit: 1
     ReleaseAccuracyToPass: 2
+    ScorePositiveMultiplier: 1.05
+    ScoreNegativeMultiplier: -1
     ColorPallete:
       models:
       - Key: {fileID: 11400000, guid: 1b7f7d42993308943b225ee9de0f2009, type: 2}

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Core.Commands;
 using Core.Components;
+using Core.Models;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
@@ -12,6 +14,7 @@ using UnityEngine;
 
 namespace Core.Systems
 {
+    [Injectable]
     public sealed partial class LinearScoreSystem : BaseSystem,
         IUpdatable,
         IGlobalStart,
@@ -21,8 +24,7 @@ namespace Core.Systems
         IReactGlobal<StartEndMarkersInitializedCommand>,
         IReactGlobal<MissMarkerCommand>
     {
-        private const float POSITIVE_MULTIPLIER = 1.05f;
-        private const float NEGATIVE_MULTIPLIER = -1;
+        [Inject] private GlobalConfigSO _globalConfig;
         
         private Filter _levelFilter;
         private Filter _planeFilter;
@@ -60,12 +62,12 @@ namespace Core.Systems
                         continue;
                     if (_needTouch == _touched)
                     {
-                        _multiplier = POSITIVE_MULTIPLIER;
+                        _multiplier = _globalConfig.Get.ScorePositiveMultiplier;
                     }
                     
                     var speed = plane.Get<SpeedCounterComponent>().Value * _speedMultiplier;
                     ref var levelComponent = ref level.Get<LevelComponent>();
-                    levelComponent.LevelProgress += _multiplier * speed *Time.deltaTime;
+                    levelComponent.LevelProgress += _multiplier * speed * Time.deltaTime;
                     Owner.GetWorld().Command(new LevelProgressUpdatedCommand());
                 }
             }
@@ -105,7 +107,7 @@ namespace Core.Systems
 
         void IReactGlobal<MissMarkerCommand>.ReactGlobal(MissMarkerCommand command)
         {
-            _multiplier = NEGATIVE_MULTIPLIER;
+            _multiplier = _globalConfig.Get.ScoreNegativeMultiplier;
         }
     }
 }

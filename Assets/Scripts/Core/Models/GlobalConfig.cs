@@ -14,6 +14,9 @@ namespace Core.Models
         public int ReleaseAccuracyToHit;
         public int ReleaseAccuracyToPass;
 
+        public float ScorePositiveMultiplier;
+        public float ScoreNegativeMultiplier;
+
         public IdentifierToModelMap<ColorIdentifier, Color> ColorPallete;
     }
 }

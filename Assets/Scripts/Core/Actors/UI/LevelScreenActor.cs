@@ -3,6 +3,8 @@ using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 using SelfishFramework.Src.Unity.UI.Actors;
+using ComplimentsUISystem = Core.Features.ScoreFeature.Systems.ComplimentsUISystem;
+using LevelProgressUISystem = Core.Features.ScoreFeature.Systems.LevelProgressUISystem;
 
 namespace Core.Actors.UI
 {

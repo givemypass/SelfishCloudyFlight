@@ -10,7 +10,7 @@ using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 using UnityEngine;
 
-namespace Core.Systems
+namespace Core.Features.ScoreFeature.Systems
 {
     public sealed partial class ComplimentsUISystem : BaseSystem,
         IReactGlobal<HitMarkerCommand>,

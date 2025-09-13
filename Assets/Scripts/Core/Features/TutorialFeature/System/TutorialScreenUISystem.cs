@@ -1,5 +1,6 @@
 ﻿using Core.Commands;
-using Core.CommonComponents;
+using Core.CommonCommands;
+using Core.Features.TutorialFeature.Components;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;
@@ -7,12 +8,13 @@ using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
-using SelfishFramework.Src.Unity.Features.InputFeature.Commands;
-using SelfishFramework.Src.Unity.Generated;
 
-namespace Core.Systems
+namespace Core.Features.TutorialFeature.System
 {
-    public sealed partial class TutorialScreenUISystem : BaseSystem, IReactLocal<InputStartedCommand>, IReactLocal<ActivateCommand>, IGlobalStart
+    public sealed partial class TutorialScreenUISystem : BaseSystem,
+        IGlobalStart,
+        IReactLocal<ActivateCommand>,
+        IReactGlobal<PlaneEmittingUpdated>
     {
         private TutorialUIMonoComponent _monoComponent;
         private Filter _tutorialManagerFilter;
@@ -28,9 +30,9 @@ namespace Core.Systems
             _monoComponent.CanvasGroup.alpha = 0;
         }
 
-        void IReactLocal<InputStartedCommand>.ReactLocal(InputStartedCommand command)
+        void IReactGlobal<PlaneEmittingUpdated>.ReactGlobal(PlaneEmittingUpdated command)
         {
-            if (command.Index != InputIdentifierMap.Tap)
+            if (!command.Status)
                 return;
             foreach (var entity in _tutorialManagerFilter)
             {

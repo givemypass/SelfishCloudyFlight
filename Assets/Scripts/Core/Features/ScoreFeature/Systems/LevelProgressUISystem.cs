@@ -8,7 +8,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 
-namespace Core.Systems
+namespace Core.Features.ScoreFeature.Systems
 {
     public sealed partial class LevelProgressUISystem : BaseSystem,
         IAfterEntityInit,

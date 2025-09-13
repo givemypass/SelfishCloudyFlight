@@ -1,5 +1,6 @@
 ﻿using Core.Commands;
 using Core.CommonComponents;
+using Core.Features.TutorialFeature.Components;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SelfishFramework.Src.Core;
@@ -9,12 +10,11 @@ using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Features.GameFSM.Commands;
-using SelfishFramework.Src.SLogs;
 using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
 using UnityEngine;
 
-namespace Core.Systems
+namespace Core.Features.TutorialFeature.System
 {
     [Injectable]
     public sealed partial class TutorialSystem : BaseSystem, IReactGlobal<TransitionGameStateCommand>, IReactLocal<TutorialCompletedCommand>, IUpdatable

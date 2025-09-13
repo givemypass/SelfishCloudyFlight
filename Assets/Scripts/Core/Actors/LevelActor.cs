@@ -1,22 +1,24 @@
 using Core.CommonComponents;
+using Core.Features.ScoreFeature.Components;
+using Core.Features.ScoreFeature.Systems;
 using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
-using SelfishFramework.Src.Unity.Components;
-using SelfishFramework.Src.Unity.Features.InputFeature.Components;
-using LinearScoreSystem = Core.Features.ScoreFeature.Systems.LinearScoreSystem;
 
 namespace Core.Actors
 {
     public partial class LevelActor : Actor
     {
         public LevelContainerTagComponent LevelContainerTagComponent = new();
-        public InputListenerTagComponent InputListenerTagComponent = new();
+        public LinearScoreComponent LinearScoreComponent = new();
         
         protected override void SetSystems()
         {
             base.SetSystems();
-            Entity.AddSystem<LinearScoreSystem>();
+            Entity.AddSystem<LinearScoreInitializeSystem>();
+            Entity.AddSystem<LinearScoreMultiplierSystem>();
+            Entity.AddSystem<LinearScoreIncrementSystem>();
+            
             Entity.AddSystem<TrackReachingMarkersSystem>();
             Entity.AddSystem<ChangeSmokeColorSystem>();
         }

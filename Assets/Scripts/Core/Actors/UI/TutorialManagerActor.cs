@@ -1,4 +1,4 @@
-﻿using Core.Components;
+﻿using Core.CommonComponents;
 using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;

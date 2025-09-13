@@ -1,9 +1,10 @@
-using Core.Components;
+using Core.CommonComponents;
 using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Components;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
+using LinearScoreSystem = Core.Features.ScoreFeature.Systems.LinearScoreSystem;
 
 namespace Core.Actors
 {

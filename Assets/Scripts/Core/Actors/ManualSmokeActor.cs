@@ -1,4 +1,4 @@
-﻿using Core.Components;
+﻿using Core.CommonComponents;
 using SelfishFramework.Src.Unity;
 
 namespace Core.Actors

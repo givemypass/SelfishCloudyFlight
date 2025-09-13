@@ -1,6 +1,7 @@
 ﻿using Core.Commands;
 using Core.CommonComponents;
 using Core.Features.TutorialFeature.Components;
+using Core.Services;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SelfishFramework.Src.Core;
@@ -17,14 +18,19 @@ using UnityEngine;
 namespace Core.Features.TutorialFeature.System
 {
     [Injectable]
-    public sealed partial class TutorialSystem : BaseSystem, IReactGlobal<TransitionGameStateCommand>, IReactLocal<TutorialCompletedCommand>, IUpdatable
+    public sealed partial class TutorialSystem : BaseSystem,
+        IUpdatable,
+        IReactGlobal<TransitionGameStateCommand>
     {
+        private const int TUTORIAL_MARKER_OFFSET = 2;
         [Inject] private UIService _uiService;
+        [Inject] private TimeScaleService _timeScaleService;
+        
+        private Single<PlayerProgressComponent> _playerProgressSingle;
         
         private Filter _planeFilter;
         private Filter _startEndMarkerFilter;
         private Filter _tutorialUiFilter;
-        private Single<PlayerProgressComponent> _playerProgressSingle;
 
         public override void InitSystem()
         {
@@ -34,36 +40,17 @@ namespace Core.Features.TutorialFeature.System
             _tutorialUiFilter = world.Filter
                 .With<TutorialUITagComponent>()
                 .Without<TutorialIsActiveComponent>().Build();
-            _playerProgressSingle = new Single<PlayerProgressComponent>(world); 
+            _playerProgressSingle = new Single<PlayerProgressComponent>(world);
         }
 
         void IReactGlobal<TransitionGameStateCommand>.ReactGlobal(TransitionGameStateCommand command)
         {
-            if (command.From == GameStateIdentifierMap.LevelState)
+            if (command.To != GameStateIdentifierMap.BootstrapLevelState || _playerProgressSingle.Get().TutorialPassed)
             {
-                HideUI();
+                return;
             }
-            
-            if (command.To == GameStateIdentifierMap.BootstrapLevelState)
-            {
-                if(!_playerProgressSingle.Get().TutorialPassed)
-                    ShowUI();
-            }
-        }
 
-        void IReactLocal<TutorialCompletedCommand>.ReactLocal(TutorialCompletedCommand command)
-        {
-            _playerProgressSingle.Get().TutorialPassed = true;
-            SetTimeScale(1);
-            HideUI(); 
-        }
-        
-        private static void SetTimeScale(int targetTimeScale)
-        {
-            DOVirtual
-                .Float(Time.timeScale, targetTimeScale, 0.1f, value => Time.timeScale = value)
-                .SetEase(Ease.InOutSine)
-                .SetUpdate(true);
+            _uiService.ShowUIAsync(UIIdentifierMap.TutorialScreen_UIIdentifier).Forget();
         }
 
         public void Update()
@@ -79,29 +66,18 @@ namespace Core.Features.TutorialFeature.System
                     foreach (var ent in _startEndMarkerFilter)
                     {
                         ref var startEndMarkerComponent = ref ent.Get<StartEndMarkersComponent>();
-                        if(!startEndMarkerComponent.Markers.TryPeek(out var marker))
+                        if (!startEndMarkerComponent.Markers.TryPeek(out var marker))
                             continue;
                         var markerIndexPlace = marker.IndexPlace;
-                        if (markerIndexPlace - 2 == index)
+                        if (markerIndexPlace - TUTORIAL_MARKER_OFFSET == index)
                         {
-                            SetTimeScale(0);
+                            _timeScaleService.SetTimeScale(0);
                             tutorialUIEntity.Command(new ActivateCommand());
-                            tutorialUIEntity.Set(new TutorialIsActiveComponent());
                             return;
                         }
                     }
                 }
             }
-        }
-        
-        private void ShowUI()
-        {
-            _uiService.ShowUIAsync(UIIdentifierMap.TutorialScreen_UIIdentifier).Forget();
-        }
-
-        private void HideUI()
-        {
-            _uiService.CloseUI(UIIdentifierMap.TutorialScreen_UIIdentifier);
         }
     }
 }

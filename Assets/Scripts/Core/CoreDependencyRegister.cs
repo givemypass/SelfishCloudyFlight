@@ -20,6 +20,7 @@ namespace Core
             container.Register(new AssetsService());
             container.Register(new ActorPoolingService());
             container.Register(new UIService(world));
+            container.Register(new TimeScaleService());
             container.Register(_globalConfig);
         }
     }

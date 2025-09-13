@@ -5,7 +5,6 @@ using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
-using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 

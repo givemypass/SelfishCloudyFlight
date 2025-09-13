@@ -7,7 +7,7 @@ using SelfishFramework.Src.Unity;
 using UnityEngine;
 using UnityEngine.Splines;
 
-namespace Core.Systems
+namespace Core.Features.PlaneFeature.Systems
 {
     public sealed partial class InitPlaneTargetSplineSystem : BaseSystem, IUpdatable
     {
@@ -18,11 +18,11 @@ namespace Core.Systems
         public override void InitSystem()
         {
             _splineFilter = Owner.GetWorld().Filter.With<LevelContainerTagComponent>().Build();
+            _smokeFilter = Owner.GetWorld().Filter.With<WritingSmokeVFXMonoProvider>().Build();
             _planeFilter = Owner.GetWorld().Filter
                 .With<PlaneTagComponent>()
                 .Without<TargetSplineComponent>()
                 .Build();
-            _smokeFilter = Owner.GetWorld().Filter.With<WritingSmokeVFXMonoProvider>().Build();
         }
 
         public void Update()

@@ -8,7 +8,7 @@ using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity.Features.InputFeature.Commands;
 using SelfishFramework.Src.Unity.Generated;
 
-namespace Core.Systems
+namespace Core.Features.PlaneFeature.Systems
 {
     public sealed partial class SkywritingSystem : BaseSystem, IUpdatable, IReactLocal<InputStartedCommand>, IReactLocal<InputEndedCommand>
     {

@@ -5,7 +5,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity.Components;
 
-namespace Core.Systems
+namespace Core.Features.PlaneFeature.Systems
 {
     public sealed partial class SyncSmokeWithPlanePositionSystem : BaseSystem, IUpdatable
     {

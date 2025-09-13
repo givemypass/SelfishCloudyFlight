@@ -3,7 +3,6 @@ using Core.CommonComponents;
 using Core.Features.TutorialFeature.Components;
 using Core.Services;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.CommandBus;
@@ -13,7 +12,6 @@ using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
-using UnityEngine;
 
 namespace Core.Features.TutorialFeature.System
 {
@@ -23,6 +21,7 @@ namespace Core.Features.TutorialFeature.System
         IReactGlobal<TransitionGameStateCommand>
     {
         private const int TUTORIAL_MARKER_OFFSET = 2;
+        
         [Inject] private UIService _uiService;
         [Inject] private TimeScaleService _timeScaleService;
         

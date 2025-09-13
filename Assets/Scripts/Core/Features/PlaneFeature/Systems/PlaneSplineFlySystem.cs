@@ -5,13 +5,16 @@ using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Components;
 using UnityEngine;
+using UnityEngine.Splines;
 
-namespace Core.Systems
+namespace Core.Features.PlaneFeature.Systems
 {
     public sealed partial class PlaneSplineFlySystem : BaseSystem, IUpdatable
     {
         private const float Z_ROTATION_SPEED = 15f;
-        
+        private const float SCALE_LERP_SPEED = 10f;
+        private const float ROTATION_LERP_SPEED = 10f;
+
         private float _zRotation;
         private Vector3 _targetScale;
         private Vector3 _maxScale;
@@ -19,8 +22,11 @@ namespace Core.Systems
         public override void InitSystem()
         {
             ref var actorProviderComponent = ref Owner.Get<ActorProviderComponent>();
-            _maxScale = actorProviderComponent.Actor.transform.localScale;
-            actorProviderComponent.Actor.transform.localScale = Vector3.zero;
+            
+            var actorTransform = actorProviderComponent.Actor.transform;
+            _maxScale = actorTransform.localScale;
+            
+            actorTransform.localScale = Vector3.zero;
             _targetScale = Vector3.zero;
         }
 
@@ -29,33 +35,46 @@ namespace Core.Systems
             if (!Owner.Has<TargetSplineComponent>())
                 return;
             
-            ref var targetSplineComponent = ref Owner.Get<TargetSplineComponent>();
             ref var positionOnSplineComponent = ref Owner.Get<PositionOnSplineComponent>();
-            ref var speedCounterComponent = ref Owner.Get<SpeedCounterComponent>();
+            var splineContainer = Owner.Get<TargetSplineComponent>().SplineContainer;
             var actor = Owner.AsActor();
-            
-            actor.transform.localScale = Vector3.Lerp(actor.transform.localScale,
-                _targetScale, 10f * Time.deltaTime);
+            var actorTransform = actor.transform;
 
-            var spline = targetSplineComponent.SplineContainer;
-            var splineTPosition = positionOnSplineComponent.TPos;
-            
+            UpdateScale(actorTransform);
+            UpdatePositionAndRotation(actorTransform, splineContainer, positionOnSplineComponent.TPos);
+            UpdateProgress(splineContainer, ref positionOnSplineComponent);
+        }
+
+        private void UpdateScale(Transform actorTransform)
+        {
+            actorTransform.localScale = Vector3.Lerp(
+                actorTransform.localScale,
+                _targetScale,
+                SCALE_LERP_SPEED * Time.deltaTime);
+        }
+
+        private void UpdatePositionAndRotation(Transform actorTransform, SplineContainer spline, float splineTPosition)
+        {
             var position = spline.EvaluatePosition(splineTPosition);
             var tangent = ((Vector3)spline.EvaluateTangent(splineTPosition)).normalized;
-            
 
             var pos = position;
-            pos.z = actor.transform.position.z;
-            actor.transform.position = pos;
+            pos.z = actorTransform.position.z;
+            actorTransform.position = pos;
 
-            var angleDif = Vector3.Angle(tangent, actor.transform.forward);
+            var angleDif = Vector3.Angle(tangent, actorTransform.forward);
 
             _zRotation += angleDif * Z_ROTATION_SPEED * Time.deltaTime;
             var targetRotation = Quaternion.LookRotation(tangent, -Vector3.forward) * Quaternion.Euler(0,0,_zRotation);
-            targetRotation = Quaternion.Lerp(actor.transform.rotation, targetRotation, 10f * Time.deltaTime);
+            targetRotation = Quaternion.Lerp(actorTransform.rotation, targetRotation, ROTATION_LERP_SPEED * Time.deltaTime);
             
-            actor.transform.rotation = targetRotation;
-            
+            actorTransform.rotation = targetRotation;
+        }
+
+        private void UpdateProgress(SplineContainer spline, ref PositionOnSplineComponent positionOnSplineComponent)
+        {
+            var splineTPosition = positionOnSplineComponent.TPos;
+            ref var speedCounterComponent = ref Owner.Get<SpeedCounterComponent>();
             var speed = speedCounterComponent.Value;
             splineTPosition += speed * Time.deltaTime;
             positionOnSplineComponent.TPos = splineTPosition;

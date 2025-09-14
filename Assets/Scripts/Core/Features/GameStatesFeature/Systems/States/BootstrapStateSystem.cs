@@ -17,7 +17,7 @@ namespace Core.Features.GameStatesFeature.Systems.States
         protected override void ProcessState(int from, int to)
         {
             Application.targetFrameRate = 60;
-            SManager.World.Command(new LoadProgressCommand());
+            Owner.GetWorld().Command(new LoadProgressCommand());
             EndState();
         }
     }

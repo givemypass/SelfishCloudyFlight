@@ -1,5 +1,5 @@
 using Core.CommonComponents;
-using Core.CommonSystems;
+using Core.Features.SaveLoadFeature;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 
@@ -13,7 +13,7 @@ namespace Core.Actors
         protected override void SetSystems()
         {
             base.SetSystems();
-            Entity.AddSystem<Features.SaveLoadFeature.SaveLoadSystem>();
+            Entity.AddSystem<SaveLoadSystem>();
         }
     }
 }

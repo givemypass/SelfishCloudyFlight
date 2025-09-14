@@ -7,11 +7,12 @@ using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
+using SelfishFramework.Src.Unity.CommonComponents;
 using UnityEngine;
 
-namespace Core.CommonSystems
+namespace Core.Features.LevelFeature.Systems
 {
-    public sealed partial class StartEndMarkersSystem : BaseSystem, IAfterEntityInit, IUpdatable
+    public sealed partial class StartEndMarkersSystem : BaseSystem, IUpdatable
     {
         private const int MAX_MARKERS = 100;
         
@@ -19,18 +20,17 @@ namespace Core.CommonSystems
         
         private Filter _planeFilter;
         private Filter _levelFilter;
+        private Single<MainCameraTagComponent> _mainCameraSingle;
 
         public override void InitSystem()
         {
-            _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().With<TargetSplineComponent>().Build();
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            ref var component = ref Owner.Get<StartEndMarkersComponent>();
-            component.Markers = new();
-        }
-
-        public void AfterEntityInit()
-        {
             Owner.AsActor().TryGetComponent(out _monoComponent);
+            _mainCameraSingle = new Single<MainCameraTagComponent>(Owner.GetWorld());
+            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            _planeFilter = Owner.GetWorld().Filter
+                .With<PlaneTagComponent>()
+                .With<TargetSplineComponent>()
+                .Build();
         }
 
         public void Update()
@@ -64,7 +64,7 @@ namespace Core.CommonSystems
                         marker.Image.sprite = point.IsStart ? _monoComponent.StartMarker : _monoComponent.EndMarker;
                         marker.gameObject.SetActive(true);
                         var markerIndexPlace = point.Index;
-                        marker.transform.position = Camera.main.WorldToScreenPoint(spline.transform.GetChild(markerIndexPlace).position);
+                        marker.transform.position = _mainCameraSingle.Get().Camera.WorldToScreenPoint(spline.transform.GetChild(markerIndexPlace).position);
                         marker.transform.localScale = Vector3.zero;
                         marker.IndexPlace = markerIndexPlace;
                         marker.IsStart = point.IsStart;

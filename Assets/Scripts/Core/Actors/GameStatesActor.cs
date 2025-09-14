@@ -1,4 +1,4 @@
-﻿using Core.CommonSystems.States;
+﻿using Core.Features.GameStatesFeature.Systems.States;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Features.GameFSM.Components;
 using SelfishFramework.Src.Unity;
@@ -15,10 +15,10 @@ namespace Core.Actors
         {
             base.SetSystems();
             Entity.AddSystem<GameStateMachineSystem>();
-            Entity.AddSystem<Features.GameStatesFeature.Systems.States.BootstrapStateSystem>();
-            Entity.AddSystem<Features.GameStatesFeature.Systems.States.BootstrapLevelStateSystem>();
-            Entity.AddSystem<Features.GameStatesFeature.Systems.States.LevelStateSystem>();
-            Entity.AddSystem<Features.GameStatesFeature.Systems.States.FinishLevelStateSystem>();
+            Entity.AddSystem<BootstrapStateSystem>();
+            Entity.AddSystem<BootstrapLevelStateSystem>();
+            Entity.AddSystem<LevelStateSystem>();
+            Entity.AddSystem<FinishLevelStateSystem>();
         }
     }
 }

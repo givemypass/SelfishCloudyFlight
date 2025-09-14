@@ -10,14 +10,17 @@ namespace Core.Actors.UI
 {
     public partial class LevelScreenActor : UIActor
     {
-        public InputListenerTagComponent InputListenerTagComponent;
-        public StartEndMarkersComponent StartEndMarkersComponent;
-        public ComplimentsHolderComponent ComplimentsHolderComponent;
+        public InputListenerTagComponent InputListenerTagComponent = new();
+        public ComplimentsHolderComponent ComplimentsHolderComponent = new();
+        public StartEndMarkersComponent StartEndMarkersComponent = new()
+        {
+            Markers = new(),
+        };
         
         protected override void SetSystems()
         {
             base.SetSystems();
-            Entity.AddSystem<StartEndMarkersSystem>();
+            Entity.AddSystem<Features.LevelFeature.Systems.StartEndMarkersSystem>();
             Entity.AddSystem<ComplimentsUISystem>();
             Entity.AddSystem<LevelProgressUISystem>();
             Entity.AddSystem<ColorsUISystem>();

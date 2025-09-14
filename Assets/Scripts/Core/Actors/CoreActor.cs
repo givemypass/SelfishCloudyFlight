@@ -1,4 +1,3 @@
-using Core.CommonComponents;
 using Core.Features.PlaneFeature.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
@@ -9,9 +8,7 @@ namespace Core.Actors
 {
     public partial class CoreActor : Actor 
     {
-        public LevelsHolderComponent LevelsHolderComponent = new();
         public InputActionsComponent InputActionsComponent = new();
-        public ActorsHolderComponent ActorsHolderComponent = new();
         
         protected override void SetSystems()
         {

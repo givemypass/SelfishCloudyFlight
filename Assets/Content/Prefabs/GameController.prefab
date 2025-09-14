@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _globalConfig: {fileID: 11400000, guid: c92deeec585725d489210b409f932a68, type: 2}
+  _levelsConfig: {fileID: 11400000, guid: 74726dfcf75b9c24ab6ab9e1a63d026a, type: 2}
 --- !u!114 &7948644216692458218
 MonoBehaviour:
   m_ObjectHideFlags: 0

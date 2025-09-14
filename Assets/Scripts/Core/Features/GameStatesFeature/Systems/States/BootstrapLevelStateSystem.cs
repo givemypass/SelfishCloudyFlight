@@ -22,37 +22,34 @@ namespace Core.Features.GameStatesFeature.Systems.States
     public sealed partial class BootstrapLevelStateSystem : BaseGameStateSystem
     {
         private const string SCENE_NAME = "Level";
-        private Single<ActorsHolderComponent> _actorsHolder;
+        
         [Inject] private GlobalConfigSO _globalConfig;
-
-        private Single<LevelsHolderComponent> _levelsHolder;
-        private Single<PlayerProgressComponent> _playerProgress;
-
+        [Inject] private LevelsConfigSO _levelsConfig;
         [Inject] private SceneService _sceneManager;
         [Inject] private UIService _uiService;
+
+        private Single<PlayerProgressComponent> _playerProgressSingle;
 
         protected override int State => GameStateIdentifierMap.BootstrapLevelState;
 
         public override void InitSystem()
         {
-            var world = Owner.GetWorld();
-            _levelsHolder = new Single<LevelsHolderComponent>(world);
-            _playerProgress = new Single<PlayerProgressComponent>(world);
-            _actorsHolder = new Single<ActorsHolderComponent>(world);
+            _playerProgressSingle = new Single<PlayerProgressComponent>(Owner.GetWorld());
         }
 
         protected override void ProcessState(int from, int to)
         {
-            if (!_levelsHolder.Exists() || !_playerProgress.Exists())
+            _playerProgressSingle.ForceUpdate();
+            if (!_playerProgressSingle.Exists())
             {
                 SLog.LogError("Required components are not found in the world.");
                 return;
             }
 
-            var levelIndex = _playerProgress.Get().LevelIndex;
-            _levelsHolder.Get().TryGetLevel(levelIndex, out var currentLevel);
+            var levelIndex = _playerProgressSingle.Get().LevelIndex;
+            _levelsConfig.Get.TryGetLevel(levelIndex, out var currentLevel);
             var globalConfig = _globalConfig.Get;
-            var levelActorPrefab = _actorsHolder.Get().LevelActorPrefab;
+            var levelActorPrefab = _globalConfig.Get.LevelPrefab;
             ProcessStateAsync(currentLevel, globalConfig, levelActorPrefab).Forget();
         }
 

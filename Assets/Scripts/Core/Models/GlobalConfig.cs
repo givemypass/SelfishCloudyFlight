@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Actors;
 using Core.Helpers;
 using Core.Identifiers;
 using UnityEngine;
@@ -18,5 +19,6 @@ namespace Core.Models
         public float ScoreNegativeMultiplier;
 
         public IdentifierToModelMap<ColorIdentifier, Color> ColorPallete;
+        public LevelActor LevelPrefab;
     }
 }

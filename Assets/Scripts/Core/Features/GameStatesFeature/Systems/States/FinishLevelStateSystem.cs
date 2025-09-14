@@ -1,5 +1,6 @@
 using System;
 using Core.CommonComponents;
+using Core.Models;
 using Core.MonoBehaviourComponents.GUI;
 using Cysharp.Threading.Tasks;
 using SelfishFramework.Src.Core;
@@ -17,18 +18,17 @@ namespace Core.Features.GameStatesFeature.Systems.States
     public sealed partial class FinishLevelStateSystem : BaseGameStateSystem
     {
         [Inject] private UIService _uiService;
+        [Inject] private LevelsConfigSO _levelsConfig;
         
         private Filter _levelFilter;
-        private Single<LevelsHolderComponent> _levelHolder;
-        private Single<PlayerProgressComponent> _playerProgressComponent;
+        private Single<PlayerProgressComponent> _playerProgressSingle;
 
         protected override int State => GameStateIdentifierMap.FinishLevelState;
 
         public override void InitSystem()
         {
-            _playerProgressComponent = new Single<PlayerProgressComponent>(Owner.GetWorld());
-            _levelHolder = new Single<LevelsHolderComponent>(Owner.GetWorld());
             _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            _playerProgressSingle = new Single<PlayerProgressComponent>(Owner.GetWorld());
         }
 
         protected override void ProcessState(int from, int to)
@@ -50,8 +50,8 @@ namespace Core.Features.GameStatesFeature.Systems.States
 
         private void IncrementLevel()
         {
-            ref var playerProgress = ref _playerProgressComponent.Get();
-            playerProgress.LevelIndex = _levelHolder.Get().GetNextLevelIndex(playerProgress.LevelIndex);
+            ref var playerProgress = ref _playerProgressSingle.Get();
+            playerProgress.LevelIndex = _levelsConfig.Get.GetNextLevelIndex(playerProgress.LevelIndex);
         }
 
         private bool IsCompleted()
@@ -79,11 +79,11 @@ namespace Core.Features.GameStatesFeature.Systems.States
         {
             if (IsCompleted())
             {
-                ref var playerProgress = ref _playerProgressComponent.Get();
-                playerProgress.LevelIndex = _levelHolder.Get().GetPreviousLevelIndex(playerProgress.LevelIndex);
+                ref var playerProgress = ref _playerProgressSingle.Get();
+                playerProgress.LevelIndex = _levelsConfig.Get.GetPreviousLevelIndex(playerProgress.LevelIndex);
             }
 
-            SManager.World.Command(new ForceGameStateTransitionGlobalCommand
+            Owner.GetWorld().Command(new ForceGameStateTransitionGlobalCommand
             {
                 GameState = GameStateIdentifierMap.BootstrapLevelState,
             });

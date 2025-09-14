@@ -11,6 +11,7 @@ namespace Core
     public class CoreDependencyRegister : SDependencyRegister
     {
         [SerializeField] private GlobalConfigSO _globalConfig;
+        [SerializeField] private LevelsConfigSO _levelsConfig;
         
         public override void Register()
         {
@@ -22,6 +23,7 @@ namespace Core
             container.Register(new UIService(world));
             container.Register(new TimeScaleService());
             container.Register(_globalConfig);
+            container.Register(_levelsConfig);
         }
     }
 }

@@ -3,7 +3,7 @@ using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
-using SelfishFramework.Src.Unity.Components;
+using SelfishFramework.Src.Unity.CommonComponents;
 using UnityEngine;
 using UnityEngine.Splines;
 

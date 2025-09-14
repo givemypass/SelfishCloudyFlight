@@ -1,11 +1,10 @@
 ﻿using System;
 using Core.MonoBehaviourComponents;
-using SelfishFramework.Src.Core.Components;
 
-namespace Core.CommonComponents
+namespace Core.Models
 {
     [Serializable]
-    public struct LevelsHolderComponent : IComponent
+    public struct LevelsConfig
     {
         public LevelMonoComponent[] Levels;
         

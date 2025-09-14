@@ -31,3 +31,4 @@ MonoBehaviour:
         Value: {r: 1, g: 0.95686275, b: 0.68235296, a: 1}
       - Key: {fileID: 11400000, guid: eb5fddbdc6097af4e9d8c0651bccfaec, type: 2}
         Value: {r: 1, g: 1, b: 1, a: 1}
+    LevelPrefab: {fileID: 7328143644048828183, guid: 4892afffa800103409bad4597d4ad047, type: 3}

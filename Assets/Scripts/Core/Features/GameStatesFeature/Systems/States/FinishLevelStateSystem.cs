@@ -11,29 +11,26 @@ using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 
-namespace Core.CommonSystems.States
+namespace Core.Features.GameStatesFeature.Systems.States
 {
     [Injectable]
-    public sealed partial class FinishLevelStateSystem : BaseGameStateSystem, IGlobalStart
+    public sealed partial class FinishLevelStateSystem : BaseGameStateSystem
     {
         [Inject] private UIService _uiService;
         
         private Filter _levelFilter;
-        private Single<PlayerProgressComponent> _playerProgressComponent;
         private Single<LevelsHolderComponent> _levelHolder;
+        private Single<PlayerProgressComponent> _playerProgressComponent;
 
-        public override void InitSystem() { }
-    
-        public void GlobalStart()
+        protected override int State => GameStateIdentifierMap.FinishLevelState;
+
+        public override void InitSystem()
         {
             _playerProgressComponent = new Single<PlayerProgressComponent>(Owner.GetWorld());
             _levelHolder = new Single<LevelsHolderComponent>(Owner.GetWorld());
-            
             _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
         }
-    
-        protected override int State => GameStateIdentifierMap.FinishLevelState;
-    
+
         protected override void ProcessState(int from, int to)
         {
             ProcessStateAsync().Forget();
@@ -46,13 +43,9 @@ namespace Core.CommonSystems.States
             monoComponent.Reset.onClick.AddListener(OnReset);
             monoComponent.Next.onClick.AddListener(OnNext);
             if (IsCompleted())
-            {
                 IncrementLevel();
-            }
             else
-            {
                 monoComponent.Next.gameObject.SetActive(false);
-            }
         }
 
         private void IncrementLevel()
@@ -68,6 +61,7 @@ namespace Core.CommonSystems.States
                 ref var levelComponent = ref level.Get<LevelComponent>();
                 return levelComponent.LevelProgress >= 0.9f;
             }
+
             throw new Exception("There is no level component in the level filter");
         }
 
@@ -75,7 +69,7 @@ namespace Core.CommonSystems.States
         {
             _uiService.CloseUI(UIIdentifierMap.FinishLevelScreen_UIIdentifier);
         }
-        
+
         private void OnNext()
         {
             EndState();
@@ -88,6 +82,7 @@ namespace Core.CommonSystems.States
                 ref var playerProgress = ref _playerProgressComponent.Get();
                 playerProgress.LevelIndex = _levelHolder.Get().GetPreviousLevelIndex(playerProgress.LevelIndex);
             }
+
             SManager.World.Command(new ForceGameStateTransitionGlobalCommand
             {
                 GameState = GameStateIdentifierMap.BootstrapLevelState,

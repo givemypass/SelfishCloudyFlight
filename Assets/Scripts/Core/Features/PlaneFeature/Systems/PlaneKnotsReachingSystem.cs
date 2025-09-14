@@ -5,7 +5,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using UnityEngine.Splines;
 
-namespace Core.CommonSystems
+namespace Core.Features.PlaneFeature.Systems
 {
     public sealed partial class PlaneKnotsReachingSystem : BaseSystem, IUpdatable
     {

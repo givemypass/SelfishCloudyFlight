@@ -1,12 +1,10 @@
 ﻿using Core.CommonComponents;
-using Core.Systems;
+using Core.CommonSystems;
+using Core.Features.ColorsFeature;
+using Core.Features.ScoreFeature.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 using SelfishFramework.Src.Unity.UI.Actors;
-using ColorsUISystem = Core.Features.ColorsFeature.ColorsUISystem;
-using ComplimentsUISystem = Core.CommonSystems.ComplimentsUISystem;
-using LevelProgressUISystem = Core.Features.ScoreFeature.Systems.LevelProgressUISystem;
-using StartEndMarkersSystem = Core.CommonSystems.StartEndMarkersSystem;
 
 namespace Core.Actors.UI
 {

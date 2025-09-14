@@ -3,15 +3,17 @@ using SelfishFramework.Src.Features.GameFSM.Commands;
 using SelfishFramework.Src.Features.GameFSM.Systems;
 using SelfishFramework.Src.Unity.Generated;
 
-namespace Core.CommonSystems.States
+namespace Core.Features.GameStatesFeature.Systems
 {
     public sealed partial class GameStateMachineSystem : BaseMainGameLogicSystem, ILateStart
     {
-        public override void InitSystem() { }
-
         public void LateStart()
         {
-            ChangeGameState(GameStateIdentifierMap.BootstrapState); 
+            ChangeGameState(GameStateIdentifierMap.BootstrapState);
+        }
+
+        public override void InitSystem()
+        {
         }
 
         public override void ProcessEndState(EndGameStateCommand endGameStateCommand)
@@ -30,7 +32,7 @@ namespace Core.CommonSystems.States
                 case GameStateIdentifierMap.FinishLevelState:
                     ChangeGameState(GameStateIdentifierMap.BootstrapLevelState);
                     break;
-            } 
+            }
         }
     }
 }

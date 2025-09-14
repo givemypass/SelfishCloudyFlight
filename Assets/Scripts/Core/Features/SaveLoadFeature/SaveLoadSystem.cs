@@ -11,7 +11,7 @@ using SelfishFramework.Src.SLogs;
 using SelfishFramework.Src.Unity.Commands;
 using UnityEngine;
 
-namespace Core.CommonSystems
+namespace Core.Features.SaveLoadFeature
 {
     public sealed partial class SaveLoadSystem : BaseSystem, IReactGlobal<SaveCommand>, IReactGlobal<LoadProgressCommand>
     {

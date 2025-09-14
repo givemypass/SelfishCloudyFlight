@@ -1,12 +1,9 @@
 using Core.CommonComponents;
 using Core.Features.PlaneFeature.Systems;
-using Core.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 using SelfishFramework.Src.Unity.Features.InputFeature.Systems;
-using InitPlaneTargetSplineSystem = Core.Features.PlaneFeature.Systems.InitPlaneTargetSplineSystem;
-using PlaneKnotsReachingSystem = Core.CommonSystems.PlaneKnotsReachingSystem;
 
 namespace Core.Actors
 {

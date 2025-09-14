@@ -9,33 +9,25 @@ using SelfishFramework.Src.Unity.Generated;
 using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 
-namespace Core.CommonSystems.States
+namespace Core.Features.GameStatesFeature.Systems.States
 {
     [Injectable]
-    public sealed partial class LevelStateSystem : BaseGameStateSystem, IGlobalStart, IUpdatable
+    public sealed partial class LevelStateSystem : BaseGameStateSystem, IUpdatable
     {
-        [Inject] private UIService _uiService;
-        
-        private Filter _planeFilter;
         private Single<GameStateComponent> _gameState;
-        public override void InitSystem() { }
-    
-        public void GlobalStart()
+
+        private Filter _planeFilter;
+        [Inject] private UIService _uiService;
+
+        protected override int State => GameStateIdentifierMap.LevelState;
+
+        public override void InitSystem()
         {
             _gameState = new Single<GameStateComponent>(Owner.GetWorld());
-            _planeFilter = Owner.GetWorld().Filter.With<PlaneTagComponent>().With<PositionOnSplineComponent>().Build();
-        }
-    
-        protected override int State => GameStateIdentifierMap.LevelState;
-    
-        protected override void ProcessState(int from, int to)
-        {
-                  
-        }
-
-        protected override void OnExitState()
-        {
-            _uiService.CloseUI(UIIdentifierMap.LevelScreen_UIIdentifier);
+            _planeFilter = Owner.GetWorld().Filter
+                .With<PlaneTagComponent>()
+                .With<PositionOnSplineComponent>()
+                .Build();
         }
 
         public void Update()
@@ -52,6 +44,15 @@ namespace Core.CommonSystems.States
                     EndState();
                 }
             }
+        }
+
+        protected override void ProcessState(int from, int to)
+        {
+        }
+
+        protected override void OnExitState()
+        {
+            _uiService.CloseUI(UIIdentifierMap.LevelScreen_UIIdentifier);
         }
     }
 }

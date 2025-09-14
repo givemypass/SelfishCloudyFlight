@@ -3,7 +3,7 @@ using Core.Features.TutorialFeature.System;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 
-namespace Core.Actors.UI
+namespace Core.Features.TutorialFeature
 {
     public partial class TutorialManagerActor : Actor
     {

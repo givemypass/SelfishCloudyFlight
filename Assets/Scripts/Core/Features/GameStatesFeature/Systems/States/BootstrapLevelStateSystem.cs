@@ -16,24 +16,24 @@ using SelfishFramework.Src.Unity.UI.Systems;
 using Systems;
 using UnityEngine;
 
-namespace Core.CommonSystems.States
+namespace Core.Features.GameStatesFeature.Systems.States
 {
     [Injectable]
-    public sealed partial class BootstrapLevelStateSystem : BaseGameStateSystem, IGlobalStart
+    public sealed partial class BootstrapLevelStateSystem : BaseGameStateSystem
     {
         private const string SCENE_NAME = "Level";
-        
-        private Single<LevelsHolderComponent> _levelsHolder;
-        private Single<PlayerProgressComponent> _playerProgress;
         private Single<ActorsHolderComponent> _actorsHolder;
-        
-        [Inject] private SceneService _sceneManager;
-        [Inject] private UIService _uiService;
         [Inject] private GlobalConfigSO _globalConfig;
 
-        public override void InitSystem() { }
+        private Single<LevelsHolderComponent> _levelsHolder;
+        private Single<PlayerProgressComponent> _playerProgress;
 
-        public void GlobalStart()
+        [Inject] private SceneService _sceneManager;
+        [Inject] private UIService _uiService;
+
+        protected override int State => GameStateIdentifierMap.BootstrapLevelState;
+
+        public override void InitSystem()
         {
             var world = Owner.GetWorld();
             _levelsHolder = new Single<LevelsHolderComponent>(world);
@@ -41,11 +41,9 @@ namespace Core.CommonSystems.States
             _actorsHolder = new Single<ActorsHolderComponent>(world);
         }
 
-        protected override int State => GameStateIdentifierMap.BootstrapLevelState;
-
         protected override void ProcessState(int from, int to)
         {
-            if(!_levelsHolder.Exists() || !_playerProgress.Exists())
+            if (!_levelsHolder.Exists() || !_playerProgress.Exists())
             {
                 SLog.LogError("Required components are not found in the world.");
                 return;
@@ -57,7 +55,7 @@ namespace Core.CommonSystems.States
             var levelActorPrefab = _actorsHolder.Get().LevelActorPrefab;
             ProcessStateAsync(currentLevel, globalConfig, levelActorPrefab).Forget();
         }
-        
+
         private async UniTask ProcessStateAsync(LevelMonoComponent level, GlobalConfig globalConfig,
             Actor levelActorPrefab)
         {
@@ -69,10 +67,10 @@ namespace Core.CommonSystems.States
             levelComponent.Level = level;
             levelActor.Entity.Set(levelComponent);
             levelActor.InitEntity();
-            
+
             var colors = level.GetColors().Select(c => globalConfig.ColorPallete[c]).ToArray();
             await ShowUI(colors);
-            
+
             EndState();
         }
 
@@ -87,8 +85,8 @@ namespace Core.CommonSystems.States
         private static void OnReset()
         {
             SManager.World.Command(new ForceGameStateTransitionGlobalCommand
-            { 
-                GameState= GameStateIdentifierMap.BootstrapLevelState,
+            {
+                GameState = GameStateIdentifierMap.BootstrapLevelState,
             });
         }
     }

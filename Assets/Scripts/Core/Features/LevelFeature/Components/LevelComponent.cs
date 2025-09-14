@@ -2,7 +2,7 @@ using System;
 using Core.MonoBehaviourComponents;
 using SelfishFramework.Src.Core.Components;
 
-namespace Core.CommonComponents
+namespace Core.Features.LevelFeature.Components
 {
     [Serializable]
     public struct LevelComponent : IComponent

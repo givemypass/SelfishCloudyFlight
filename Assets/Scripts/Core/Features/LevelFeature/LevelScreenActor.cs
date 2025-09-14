@@ -1,12 +1,12 @@
-﻿using Core.CommonComponents;
-using Core.CommonSystems;
-using Core.Features.ColorsFeature;
+﻿using Core.Features.ColorsFeature.Systems;
+using Core.Features.LevelFeature.Components;
+using Core.Features.LevelFeature.Systems;
 using Core.Features.ScoreFeature.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity.Features.InputFeature.Components;
 using SelfishFramework.Src.Unity.UI.Actors;
 
-namespace Core.Actors.UI
+namespace Core.Features.LevelFeature
 {
     public partial class LevelScreenActor : UIActor
     {
@@ -20,7 +20,7 @@ namespace Core.Actors.UI
         protected override void SetSystems()
         {
             base.SetSystems();
-            Entity.AddSystem<Features.LevelFeature.Systems.StartEndMarkersSystem>();
+            Entity.AddSystem<StartEndMarkersSystem>();
             Entity.AddSystem<ComplimentsUISystem>();
             Entity.AddSystem<LevelProgressUISystem>();
             Entity.AddSystem<ColorsUISystem>();

@@ -1,5 +1,6 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.LevelFeature.Components;
+using Core.Features.TutorialFeature.Commads;
 using Core.Features.TutorialFeature.Components;
 using Core.Services;
 using Cysharp.Threading.Tasks;
@@ -71,7 +72,7 @@ namespace Core.Features.TutorialFeature.System
                         if (markerIndexPlace - TUTORIAL_MARKER_OFFSET == index)
                         {
                             _timeScaleService.SetTimeScale(0);
-                            tutorialUIEntity.Command(new ActivateCommand());
+                            tutorialUIEntity.Command(new TutorialActivateCommand());
                             return;
                         }
                     }

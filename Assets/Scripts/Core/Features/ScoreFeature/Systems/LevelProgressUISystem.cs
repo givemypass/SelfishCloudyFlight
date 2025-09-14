@@ -1,5 +1,6 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
+using Core.Features.LevelFeature.Components;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;

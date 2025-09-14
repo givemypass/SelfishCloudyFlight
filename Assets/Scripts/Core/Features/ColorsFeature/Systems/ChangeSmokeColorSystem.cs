@@ -1,11 +1,11 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.ColorsFeature.Commands;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;
 using SelfishFramework.Src.Core.Filter;
 using SelfishFramework.Src.Core.Systems;
 
-namespace Core.Features.ColorsFeature
+namespace Core.Features.ColorsFeature.Systems
 {
     public sealed partial class ChangeSmokeColorSystem : BaseSystem, IReactGlobal<ColorSelectedCommand>
     {

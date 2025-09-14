@@ -1,7 +1,7 @@
 ﻿using SelfishFramework.Src.Core.CommandBus;
 using UnityEngine;
 
-namespace Core.Commands
+namespace Core.Features.ColorsFeature.Commands
 {
     public struct ColorSelectedCommand : IGlobalCommand
     {

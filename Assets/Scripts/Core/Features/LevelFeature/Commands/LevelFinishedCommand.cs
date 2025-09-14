@@ -1,6 +1,6 @@
 using SelfishFramework.Src.Core.CommandBus;
 
-namespace Core.Commands
+namespace Core.Features.LevelFeature.Commands
 {
     public struct LevelFinishedCommand : IGlobalCommand
     {

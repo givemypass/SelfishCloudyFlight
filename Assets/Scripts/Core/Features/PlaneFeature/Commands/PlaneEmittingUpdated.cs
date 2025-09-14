@@ -1,6 +1,6 @@
 ﻿using SelfishFramework.Src.Core.CommandBus;
 
-namespace Core.CommonCommands
+namespace Core.Features.PlaneFeature.Commands
 {
     public struct PlaneEmittingUpdated : IGlobalCommand
     {

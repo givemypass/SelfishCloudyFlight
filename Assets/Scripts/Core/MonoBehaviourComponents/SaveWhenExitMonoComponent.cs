@@ -1,6 +1,6 @@
 ﻿using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Features.GameFSM.Components;
-using SelfishFramework.Src.Unity.Commands;
+using SelfishFramework.Src.Unity.CommonCommands;
 using UnityEngine;
 
 namespace Core.MonoBehaviourComponents

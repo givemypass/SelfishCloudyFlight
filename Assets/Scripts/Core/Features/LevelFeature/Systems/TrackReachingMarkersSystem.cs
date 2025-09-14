@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Core.Commands;
-using Core.CommonCommands;
 using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
+using Core.Features.LevelFeature.Components;
+using Core.Features.PlaneFeature.Commands;
 using Core.Models;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;
@@ -11,7 +12,7 @@ using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using UnityEngine;
 
-namespace Core.CommonSystems
+namespace Core.Features.LevelFeature.Systems
 {
     [Injectable]
     public sealed partial class TrackReachingMarkersSystem : BaseSystem,

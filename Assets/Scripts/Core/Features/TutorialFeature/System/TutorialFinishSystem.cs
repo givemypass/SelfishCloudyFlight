@@ -1,5 +1,5 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.TutorialFeature.Commads;
 using Core.Services;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;

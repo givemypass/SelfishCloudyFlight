@@ -1,11 +1,11 @@
-﻿using Core.Commands;
+﻿using Core.Features.ColorsFeature.Commands;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.SystemModules;
 using SelfishFramework.Src.Core.Systems;
 using SelfishFramework.Src.Unity;
 
-namespace Core.Features.ColorsFeature
+namespace Core.Features.ColorsFeature.Systems
 {
     public sealed partial class ColorsUISystem : BaseSystem, IAfterEntityInit
     {

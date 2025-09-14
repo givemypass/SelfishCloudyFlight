@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core.Components;
 
-namespace Core.CommonComponents
+namespace Core.Features.LevelFeature.Components
 {
     [Serializable]
     public struct StartEndMarkersComponent : IComponent

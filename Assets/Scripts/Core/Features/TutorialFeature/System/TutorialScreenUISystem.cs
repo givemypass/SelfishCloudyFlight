@@ -1,5 +1,5 @@
-﻿using Core.Commands;
-using Core.CommonCommands;
+﻿using Core.Features.PlaneFeature.Commands;
+using Core.Features.TutorialFeature.Commads;
 using Core.Features.TutorialFeature.Components;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
@@ -11,7 +11,7 @@ using SelfishFramework.Src.Unity;
 namespace Core.Features.TutorialFeature.System
 {
     public sealed partial class TutorialScreenUISystem : BaseSystem,
-        IReactLocal<ActivateCommand>,
+        IReactLocal<TutorialActivateCommand>,
         IReactGlobal<PlaneEmittingUpdated>
     {
         private TutorialUIMonoComponent _monoComponent;
@@ -27,7 +27,7 @@ namespace Core.Features.TutorialFeature.System
                 .Build();
         }
 
-        void IReactLocal<ActivateCommand>.ReactLocal(ActivateCommand command)
+        void IReactLocal<TutorialActivateCommand>.ReactLocal(TutorialActivateCommand command)
         {
             _monoComponent.Activate();
             Owner.Set(new TutorialIsActiveComponent());

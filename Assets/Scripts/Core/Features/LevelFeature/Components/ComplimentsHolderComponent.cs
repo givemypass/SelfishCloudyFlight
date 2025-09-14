@@ -3,7 +3,7 @@ using Core.MonoBehaviourComponents;
 using SelfishFramework.Src.Core.Components;
 using UnityEngine;
 
-namespace Core.CommonComponents
+namespace Core.Features.LevelFeature.Components
 {
     [Serializable]
     public struct ComplimentsHolderComponent : IComponent

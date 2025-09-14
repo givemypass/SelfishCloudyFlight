@@ -1,5 +1,5 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Attributes;
 using SelfishFramework.Src.Core.Filter;

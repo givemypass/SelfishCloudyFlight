@@ -1,5 +1,5 @@
-﻿using Core.Commands;
-using Core.CommonComponents;
+﻿using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
 using Core.Features.ScoreFeature.Components;
 using Core.Models;
 using SelfishFramework.Src.Core;

@@ -1,5 +1,5 @@
-using Core.Commands;
 using SelfishFramework.Src.Core;
+using SelfishFramework.Src.Unity.CommonCommands;
 using SelfishFramework.Src.Unity.Generated;
 using Systems;
 using UnityEngine;

@@ -1,12 +1,12 @@
-using Core.CommonComponents;
-using Core.CommonSystems;
-using Core.Features.ColorsFeature;
+using Core.Features.ColorsFeature.Systems;
+using Core.Features.LevelFeature.Components;
+using Core.Features.LevelFeature.Systems;
 using Core.Features.ScoreFeature.Components;
 using Core.Features.ScoreFeature.Systems;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Unity;
 
-namespace Core.Actors
+namespace Core.Features.LevelFeature
 {
     public partial class LevelActor : Actor
     {

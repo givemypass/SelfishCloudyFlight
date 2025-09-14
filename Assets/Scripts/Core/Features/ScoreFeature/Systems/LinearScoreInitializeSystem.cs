@@ -1,6 +1,7 @@
 ﻿using System.Linq;
-using Core.Commands;
 using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
+using Core.Features.LevelFeature.Components;
 using Core.Features.ScoreFeature.Components;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.CommandBus;

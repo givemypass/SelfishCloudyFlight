@@ -19,6 +19,6 @@ namespace Core.Models
         public float ScoreNegativeMultiplier;
 
         public IdentifierToModelMap<ColorIdentifier, Color> ColorPallete;
-        public LevelActor LevelPrefab;
+        public Features.LevelFeature.LevelActor LevelPrefab;
     }
 }

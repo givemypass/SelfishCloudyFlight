@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using Core.Commands;
 using Core.CommonComponents;
+using Core.Features.LevelFeature.Commands;
+using Core.Features.LevelFeature.Components;
 using Core.MonoBehaviourComponents.GUI;
 using SelfishFramework.Src.Core;
 using SelfishFramework.Src.Core.Filter;
@@ -97,7 +98,6 @@ namespace Core.Features.LevelFeature.Systems
 
                             Owner.GetWorld().Command(new MarkerReachedCommand
                             {
-                                ScreenPosition = nearest.transform.position,
                                 MarkerIsEnd = !nearest.IsStart,
                             });
                             Object.Destroy(nearest.gameObject);

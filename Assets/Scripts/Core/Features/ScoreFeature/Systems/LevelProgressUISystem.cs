@@ -22,7 +22,7 @@ namespace Core.Features.ScoreFeature.Systems
         public override void InitSystem()
         {
             Owner.AsActor().TryGetComponent(out _monoComponent, true);
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            _levelFilter = World.Filter.With<LevelComponent>().Build();
         }
 
         public void AfterEntityInit()

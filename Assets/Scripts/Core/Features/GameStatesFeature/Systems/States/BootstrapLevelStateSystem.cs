@@ -35,7 +35,7 @@ namespace Core.Features.GameStatesFeature.Systems.States
 
         public override void InitSystem()
         {
-            _playerProgressSingle = new Single<PlayerProgressComponent>(Owner.GetWorld());
+            _playerProgressSingle = new Single<PlayerProgressComponent>(World);
         }
 
         protected override void ProcessState(int from, int to)
@@ -60,7 +60,7 @@ namespace Core.Features.GameStatesFeature.Systems.States
             await _sceneManager.LoadScene(SCENE_NAME);
 
             var levelActor = Object.Instantiate(levelActorPrefab);
-            levelActor.SetEntity(Owner.GetWorld());
+            levelActor.SetEntity(World);
             var levelComponent = levelActor.Entity.Get<LevelComponent>();
             levelComponent.Level = level;
             levelActor.Entity.Set(levelComponent);

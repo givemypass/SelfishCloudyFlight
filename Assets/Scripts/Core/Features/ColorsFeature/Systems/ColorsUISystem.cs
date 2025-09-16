@@ -23,7 +23,7 @@ namespace Core.Features.ColorsFeature.Systems
                 colorButton.OnPressed += () =>
                 {
                     var color = colorButton.Image.color;
-                    Owner.GetWorld().Command(new ColorSelectedCommand(color));
+                    World.Command(new ColorSelectedCommand(color));
                 };
             }
         }

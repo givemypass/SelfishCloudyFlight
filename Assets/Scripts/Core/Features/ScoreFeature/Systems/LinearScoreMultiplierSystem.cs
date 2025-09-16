@@ -23,7 +23,7 @@ namespace Core.Features.ScoreFeature.Systems
 
         public override void InitSystem()
         {
-            _planeFilter = Owner.GetWorld().Filter
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .Build();
         }

@@ -17,8 +17,8 @@ namespace Core.Features.ScoreFeature.Systems
         
         public override void InitSystem()
         {
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            _planeFilter = Owner.GetWorld().Filter
+            _levelFilter = World.Filter.With<LevelComponent>().Build();
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .With<SpeedCounterComponent>()
                 .With<PositionOnSplineComponent>()
@@ -38,7 +38,7 @@ namespace Core.Features.ScoreFeature.Systems
                     var speed = plane.Get<SpeedCounterComponent>().Value * scoreComponent.SpeedMultiplier;
                     ref var levelComponent = ref level.Get<LevelComponent>();
                     levelComponent.LevelProgress += scoreComponent.Multiplier * speed * Time.deltaTime;
-                    Owner.GetWorld().Command(new LevelProgressUpdatedCommand());
+                    World.Command(new LevelProgressUpdatedCommand());
                 }
             }
         }

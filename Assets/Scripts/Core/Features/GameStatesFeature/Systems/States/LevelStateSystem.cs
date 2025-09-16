@@ -23,8 +23,8 @@ namespace Core.Features.GameStatesFeature.Systems.States
 
         public override void InitSystem()
         {
-            _gameState = new Single<GameStateComponent>(Owner.GetWorld());
-            _planeFilter = Owner.GetWorld().Filter
+            _gameState = new Single<GameStateComponent>(World);
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .With<PositionOnSplineComponent>()
                 .Build();

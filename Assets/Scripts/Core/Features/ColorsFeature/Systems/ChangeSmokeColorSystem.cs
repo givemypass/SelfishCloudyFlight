@@ -13,7 +13,7 @@ namespace Core.Features.ColorsFeature.Systems
 
         public override void InitSystem()
         {
-            _filter = Owner.GetWorld().Filter.With<WritingSmokeVFXMonoProvider>().Build();
+            _filter = World.Filter.With<WritingSmokeVFXMonoProvider>().Build();
         }
 
         void IReactGlobal<ColorSelectedCommand>.ReactGlobal(ColorSelectedCommand command)

@@ -16,7 +16,7 @@ namespace Core.Features.PlaneFeature.Systems
 
         public override void InitSystem()
         {
-            _smokeFilter = Owner.GetWorld().Filter
+            _smokeFilter = World.Filter
                 .With<WritingSmokeVFXMonoProvider>()
                 .With<ManualSmokeTagComponent>()
                 .Build();
@@ -43,7 +43,7 @@ namespace Core.Features.PlaneFeature.Systems
             if (command.Index != InputIdentifierMap.Tap)
                 return;
             Owner.Set(new PlaneIsEmittingComponent());
-            Owner.GetWorld().Command(new PlaneEmittingUpdated
+            World.Command(new PlaneEmittingUpdated
             {
                 Status = true,
             });
@@ -54,7 +54,7 @@ namespace Core.Features.PlaneFeature.Systems
             if (command.Index != InputIdentifierMap.Tap)
                 return;
             Owner.Remove<PlaneIsEmittingComponent>();
-            Owner.GetWorld().Command(new PlaneEmittingUpdated
+            World.Command(new PlaneEmittingUpdated
             {
                 Status = false,
             });           

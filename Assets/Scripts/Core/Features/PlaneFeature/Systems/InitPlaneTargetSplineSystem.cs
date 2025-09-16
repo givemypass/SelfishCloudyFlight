@@ -18,9 +18,9 @@ namespace Core.Features.PlaneFeature.Systems
 
         public override void InitSystem()
         {
-            _splineFilter = Owner.GetWorld().Filter.With<LevelContainerTagComponent>().Build();
-            _smokeFilter = Owner.GetWorld().Filter.With<WritingSmokeVFXMonoProvider>().Build();
-            _planeFilter = Owner.GetWorld().Filter
+            _splineFilter = World.Filter.With<LevelContainerTagComponent>().Build();
+            _smokeFilter = World.Filter.With<WritingSmokeVFXMonoProvider>().Build();
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .Without<TargetSplineComponent>()
                 .Build();

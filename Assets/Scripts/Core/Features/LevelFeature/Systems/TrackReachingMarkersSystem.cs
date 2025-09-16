@@ -39,13 +39,13 @@ namespace Core.Features.LevelFeature.Systems
 
         public override void InitSystem()
         {
-            _planeFilter = Owner.GetWorld().Filter
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .With<TargetSplineComponent>()
                 .With<PositionOnSplineComponent>()
                 .Build();
-            _startEndMarkersFilter = Owner.GetWorld().Filter.With<StartEndMarkersComponent>().Build();
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
+            _startEndMarkersFilter = World.Filter.With<StartEndMarkersComponent>().Build();
+            _levelFilter = World.Filter.With<LevelComponent>().Build();
         }
 
         public void GlobalStart()
@@ -87,17 +87,17 @@ namespace Core.Features.LevelFeature.Systems
 
         private void ApplyMiss()
         {
-            Owner.GetWorld().Command(new MissMarkerCommand());
+            World.Command(new MissMarkerCommand());
         }
         
         private void ApplyPass()
         {
-            Owner.GetWorld().Command(new PassMarkerSuccessfullyCommand());
+            World.Command(new PassMarkerSuccessfullyCommand());
         }
 
         private void ApplyHit()
         {
-            Owner.GetWorld().Command(new HitMarkerCommand());
+            World.Command(new HitMarkerCommand());
         }
 
         private static int GetPlanePosIndex(Entity plane)

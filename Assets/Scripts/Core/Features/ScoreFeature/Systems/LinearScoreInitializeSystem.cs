@@ -17,7 +17,7 @@ namespace Core.Features.ScoreFeature.Systems
         
         public override void InitSystem()
         {
-            _startEndMarkersFilter = Owner.GetWorld().Filter.With<StartEndMarkersComponent>().Build();
+            _startEndMarkersFilter = World.Filter.With<StartEndMarkersComponent>().Build();
         }
 
         public void ReactGlobal(StartEndMarkersInitializedCommand command)

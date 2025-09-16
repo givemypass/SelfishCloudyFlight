@@ -22,7 +22,7 @@ namespace Core.Features.TutorialFeature.System
             Owner.AsActor().TryGetComponent(out _monoComponent);
             _monoComponent.CanvasGroup.alpha = 0;
             
-            _tutorialManagerFilter = Owner.GetWorld().Filter
+            _tutorialManagerFilter = World.Filter
                 .With<TutorialManagerTagComponent>()
                 .Build();
         }

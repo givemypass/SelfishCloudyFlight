@@ -21,7 +21,7 @@ namespace Core.Features.TutorialFeature.System
         
         public override void InitSystem()
         {
-            _playerProgressSingle = new Single<PlayerProgressComponent>(Owner.GetWorld());
+            _playerProgressSingle = new Single<PlayerProgressComponent>(World);
         }
         
         void IReactLocal<TutorialCompletedCommand>.ReactLocal(TutorialCompletedCommand command)

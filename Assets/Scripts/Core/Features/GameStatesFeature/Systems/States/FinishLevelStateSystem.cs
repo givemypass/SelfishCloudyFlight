@@ -28,8 +28,8 @@ namespace Core.Features.GameStatesFeature.Systems.States
 
         public override void InitSystem()
         {
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            _playerProgressSingle = new Single<PlayerProgressComponent>(Owner.GetWorld());
+            _levelFilter = World.Filter.With<LevelComponent>().Build();
+            _playerProgressSingle = new Single<PlayerProgressComponent>(World);
         }
 
         protected override void ProcessState(int from, int to)
@@ -84,7 +84,7 @@ namespace Core.Features.GameStatesFeature.Systems.States
                 playerProgress.LevelIndex = _levelsConfig.Get.GetPreviousLevelIndex(playerProgress.LevelIndex);
             }
 
-            Owner.GetWorld().Command(new ForceGameStateTransitionGlobalCommand
+            World.Command(new ForceGameStateTransitionGlobalCommand
             {
                 GameState = GameStateIdentifierMap.BootstrapLevelState,
             });

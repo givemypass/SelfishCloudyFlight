@@ -34,7 +34,7 @@ namespace Core.Features.TutorialFeature.System
 
         public override void InitSystem()
         {
-            var world = Owner.GetWorld();
+            var world = World;
             _planeFilter = world.Filter.With<PlaneTagComponent>().With<TargetSplineComponent>().Build();
             _startEndMarkerFilter = world.Filter.With<StartEndMarkersComponent>().Build();
             _tutorialUiFilter = world.Filter

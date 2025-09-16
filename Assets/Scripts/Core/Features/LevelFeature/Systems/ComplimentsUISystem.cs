@@ -47,10 +47,9 @@ namespace Core.Features.LevelFeature.Systems
 
         public override void InitSystem()
         {
-            var world = Owner.GetWorld();
-            _playerSettingsComponent = new Single<PlayerSettingsComponent>(world);
-            _mainCameraSingle = new Single<MainCameraTagComponent>(world);
-            _planeFilter = world.Filter.With<PlaneTagComponent>().Build();
+            _playerSettingsComponent = new Single<PlayerSettingsComponent>(World);
+            _mainCameraSingle = new Single<MainCameraTagComponent>(World);
+            _planeFilter = World.Filter.With<PlaneTagComponent>().Build();
         }
 
         private Vector3 GetPlaneScreenPos(Entity planeEntity)

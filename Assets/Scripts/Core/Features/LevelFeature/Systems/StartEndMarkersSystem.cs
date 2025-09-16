@@ -26,9 +26,9 @@ namespace Core.Features.LevelFeature.Systems
         public override void InitSystem()
         {
             Owner.AsActor().TryGetComponent(out _monoComponent);
-            _mainCameraSingle = new Single<MainCameraTagComponent>(Owner.GetWorld());
-            _levelFilter = Owner.GetWorld().Filter.With<LevelComponent>().Build();
-            _planeFilter = Owner.GetWorld().Filter
+            _mainCameraSingle = new Single<MainCameraTagComponent>(World);
+            _levelFilter = World.Filter.With<LevelComponent>().Build();
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .With<TargetSplineComponent>()
                 .Build();
@@ -44,7 +44,7 @@ namespace Core.Features.LevelFeature.Systems
             {
                 component.Points = new Queue<StartEndMarkersComponent.Point>();
                 InitIndexes(ref component);
-                Owner.GetWorld().Command(new StartEndMarkersInitializedCommand());
+                World.Command(new StartEndMarkersInitializedCommand());
             }
 
             foreach (var levelEnt in _levelFilter)
@@ -93,10 +93,10 @@ namespace Core.Features.LevelFeature.Systems
                             component.Markers.Dequeue();
                             if (component.Markers.Count == 0)
                             {
-                                Owner.GetWorld().Command(new ReachedLastMarkerCommand());
+                                World.Command(new ReachedLastMarkerCommand());
                             }
 
-                            Owner.GetWorld().Command(new MarkerReachedCommand
+                            World.Command(new MarkerReachedCommand
                             {
                                 MarkerIsEnd = !nearest.IsStart,
                             });

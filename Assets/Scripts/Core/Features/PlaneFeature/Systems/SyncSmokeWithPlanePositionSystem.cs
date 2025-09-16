@@ -14,11 +14,11 @@ namespace Core.Features.PlaneFeature.Systems
 
         public override void InitSystem()
         {
-            _smokeFilter = Owner.GetWorld().Filter
+            _smokeFilter = World.Filter
                 .With<ActorProviderComponent>()
                 .With<WritingSmokeVFXMonoProvider>()
                 .Build();
-            _planeFilter = Owner.GetWorld().Filter
+            _planeFilter = World.Filter
                 .With<PlaneTagComponent>()
                 .With<TargetSplineComponent>()
                 .With<PositionOnSplineComponent>()

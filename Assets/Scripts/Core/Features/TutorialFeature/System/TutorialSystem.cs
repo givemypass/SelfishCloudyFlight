@@ -34,13 +34,12 @@ namespace Core.Features.TutorialFeature.System
 
         public override void InitSystem()
         {
-            var world = World;
-            _planeFilter = world.Filter.With<PlaneTagComponent>().With<TargetSplineComponent>().Build();
-            _startEndMarkerFilter = world.Filter.With<StartEndMarkersComponent>().Build();
-            _tutorialUiFilter = world.Filter
+            _planeFilter = World.Filter.With<PlaneTagComponent>().With<TargetSplineComponent>().Build();
+            _startEndMarkerFilter = World.Filter.With<StartEndMarkersComponent>().Build();
+            _tutorialUiFilter = World.Filter
                 .With<TutorialUITagComponent>()
                 .Without<TutorialIsActiveComponent>().Build();
-            _playerProgressSingle = new Single<PlayerProgressComponent>(world);
+            _playerProgressSingle = new Single<PlayerProgressComponent>(World);
         }
 
         void IReactGlobal<TransitionGameStateCommand>.ReactGlobal(TransitionGameStateCommand command)
